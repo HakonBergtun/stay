@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stay – Booking</title>
+    <link rel="stylesheet" href="./CSS/bookingside.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Stay</h1>
+      <nav>
+        <a href="./profile.html">Profil</a>
+        <a href="./bookingside.html" aria-current="page">Booking</a>
+      </nav>
+    </header>
+
+    <main>
+      <p id="pageMessage" role="status" aria-live="polite"></p>
+
+      <section aria-labelledby="newBookingTitle">
+        <h2 id="newBookingTitle">Ny booking</h2>
+
+        <form id="newBookingForm">
+
+          <input type="hidden" id="userId" name="userId" value="" />
+
+          <label>
+            Rom
+            <select id="roomId" name="roomId" required>
+              <option value="" selected disabled>Velg rom</option>
+            </select>
+          </label>
+
+          <label>
+            Fra dato
+            <input type="date" id="fromDate" name="fromDate" required />
+          </label>
+
+          <label>
+            Til dato
+            <input type="date" id="toDate" name="toDate" required />
+          </label>
+
+          <label>
+            Melding (valgfritt)
+            <textarea id="message" name="message" rows="4"></textarea>
+          </label>
+
+          <button type="submit" id="createBookingBtn">Send booking</button>
+        </form>
+      </section>
+
+      <section aria-labelledby="myBookingsTitle">
+        <h2 id="myBookingsTitle">Mine bookinger</h2>
+
+        <div id="bookingsList"></div>
+
+        <p id="emptyState" hidden>Ingen bookinger enda.</p>
+      </section>
+
+      <dialog id="editDialog">
+        <form id="editBookingForm" method="dialog">
+          <h3>Rediger booking</h3>
+
+          <input type="hidden" id="editBookingId" name="id" />
+
+          <label>
+            Fra dato
+            <input type="date" id="editFromDate" name="fromDate" required />
+          </label>
+
+          <label>
+            Til dato
+            <input type="date" id="editToDate" name="toDate" required />
+          </label>
+
+          <label>
+            Melding
+            <textarea id="editMessage" name="message" rows="4"></textarea>
+          </label>
+
+          <menu>
+            <button type="button" id="cancelEditBtn">Avbryt</button>
+            <button type="submit" id="saveEditBtn">Lagre</button>
+          </menu>
+        </form>
+      </dialog>
+
+      <section aria-labelledby="roomsPreviewTitle">
+        <h2 id="roomsPreviewTitle">Rom (preview)</h2>
+        <ul id="roomsPreview">
+          <li>Dobbeltrom med sjøutsikt – 1200 kr/natt</li>
+          <li>Standard dobbeltrom – 950 kr/natt</li>
+          <li>Familierom – 1600 kr/natt</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <small>Stay</small>
+    </footer>
+  </body>
+</html>

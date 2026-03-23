@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stay – Profil</title>
+    <link rel="stylesheet" href="./CSS/profile.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Stay</h1>
+      <nav>
+        <a href="./bookingside.html">Booking</a>
+        <a href="./profile.html" aria-current="page">Profil</a>
+      </nav>
+    </header>
+
+    <main>
+      <p id="pageMessage" role="status" aria-live="polite"></p>
+
+      <section aria-labelledby="profileTitle">
+        <h2 id="profileTitle">Min profil</h2>
+
+        <div class="profile-card" id="profileCard">
+          <div class="avatar" aria-hidden="true"></div>
+
+          <div class="profile-info">
+            <p><strong>Brukernavn:</strong> <span id="profileUserName">-</span></p>
+            <p><strong>E-post:</strong> <span id="profileEmail">-</span></p>
+            <p><strong>Opprettet:</strong> <span id="profileCreated">-</span></p>
+            <p><strong>Sist oppdatert:</strong> <span id="profileUpdated">-</span></p>
+          </div>
+        </div>
+
+        <label class="small">
+          Velg bruker (dev)
+          <select id="userSelect">
+            <option value="1">User #1</option>
+          </select>
+        </label>
+
+        <button id="refreshProfileBtn" type="button">Oppdater profilvisning</button>
+      </section>
+
+      <section aria-labelledby="editProfileTitle">
+        <h2 id="editProfileTitle">Rediger profil</h2>
+
+        <form id="editProfileForm">
+          <input type="hidden" id="editUserId" name="id" value="" />
+
+          <label>
+            Brukernavn
+            <input type="text" id="userName" name="userName" required />
+          </label>
+
+          <label>
+            E-post
+            <input type="email" id="email" name="email" required />
+          </label>
+
+          <label>
+            Passord
+            <input type="password" id="password" name="password" required />
+          </label>
+
+          <button type="submit" id="saveProfileBtn">Lagre endringer</button>
+        </form>
+      </section>
+
+      <section aria-labelledby="dangerTitle">
+        <h2 id="dangerTitle">Slett konto</h2>
+        <p class="muted">
+          Dette kan ikke angres. Etter sletting skal appen navigere til landing/login og resette currentUser.
+        </p>
+
+        <button id="deleteUserBtn" type="button" class="danger">
+          Slett bruker
+        </button>
+      </section>
+    </main>
+
+    <footer>
+      <small>© Stay</small>
+    </footer>
+  </body>
+</html>
