@@ -1,3 +1,5 @@
+/* Fullt navn: <DITT NAVN HER> */
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -27,6 +29,9 @@ main {
 
 section {
   margin-bottom: 24px;
+  padding: 12px;
+  border: 1px solid #eee;
+  border-radius: 8px;
 }
 
 form {
@@ -60,4 +65,58 @@ button {
 
 button:hover {
   opacity: 0.9;
+}
+
+/* Feedback-melding */
+#pageMessage {
+  min-height: 1.2em;
+  color: #333;
+}
+
+/* Liste over bookinger (cards) */
+#bookingsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.booking-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.booking-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.booking-actions button {
+  background: #555;
+}
+
+.booking-actions button[data-action="delete"] {
+  background: #b00020;
+}
+
+/* Dialog */
+dialog {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 16px;
+  max-width: 420px;
+  width: 90%;
+}
+
+menu {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 0;
+  margin-top: 10px;
+}
+
+#cancelEditBtn {
+  background: #777;
 }

@@ -11,58 +11,86 @@
     <header>
       <h1>Stay</h1>
       <nav>
-        <a href="./infoside.html">Info</a>
-        <a href="./bookingside.html">Booking</a>
+        <a href="./profilside.html">profil</a>
+        <a href="./bookingside.html" aria-current="page">Booking</a>
       </nav>
     </header>
 
     <main>
-      <section>
-        <h2>Bestill rom</h2>
+      <p id="pageMessage" role="status" aria-live="polite"></p>
 
-        <form>
-          <label>
-            Navn
-            <input type="text" name="name" placeholder="Ola Nordmann" required />
-          </label>
+      <section aria-labelledby="newBookingTitle">
+        <h2 id="newBookingTitle">Ny booking</h2>
 
-          <label>
-            E-post
-            <input type="email" name="email" placeholder="ola@example.com" required />
-          </label>
+        <form id="newBookingForm">
+
+          <input type="hidden" id="userId" name="userId" value="" />
 
           <label>
-            Fra dato
-            <input type="date" name="fromDate" required />
-          </label>
-
-          <label>
-            Til dato
-            <input type="date" name="toDate" required />
-          </label>
-
-          <label>
-            Velg rom
-            <select name="roomId" required>
+            Rom
+            <select id="roomId" name="roomId" required>
               <option value="" selected disabled>Velg rom</option>
-              <option value="1">Dobbeltrom med sjøutsikt</option>
-              <option value="2">Standard dobbeltrom</option>
-              <option value="3">Familierom</option>
             </select>
           </label>
 
           <label>
-            Melding (valgfritt)
-            <textarea name="message" rows="4"></textarea>
+            Fra dato
+            <input type="date" id="fromDate" name="fromDate" required />
           </label>
 
-          <button type="submit">Send booking</button>
+          <label>
+            Til dato
+            <input type="date" id="toDate" name="toDate" required />
+          </label>
+
+          <label>
+            Melding (valgfritt)
+            <textarea id="message" name="message" rows="4"></textarea>
+          </label>
+
+          <button type="submit" id="createBookingBtn">Send booking</button>
         </form>
       </section>
 
-      <section>
-        <h2>Rom (preview)</h2>
-        <ul>
+      <section aria-labelledby="myBookingsTitle">
+        <h2 id="myBookingsTitle">Mine bookinger</h2>
+
+        <div id="bookingsList"></div>
+
+        <p id="emptyState" hidden>Ingen bookinger enda.</p>
+      </section>
+
+      <dialog id="editDialog">
+        <form id="editBookingForm" method="dialog">
+          <h3>Rediger booking</h3>
+
+          <input type="hidden" id="editBookingId" name="id" />
+
+          <label>
+            Fra dato
+            <input type="date" id="editFromDate" name="fromDate" required />
+          </label>
+
+          <label>
+            Til dato
+            <input type="date" id="editToDate" name="toDate" required />
+          </label>
+
+          <label>
+            Melding
+            <textarea id="editMessage" name="message" rows="4"></textarea>
+          </label>
+
+          <menu>
+            <button type="button" id="cancelEditBtn">Avbryt</button>
+            <button type="submit" id="saveEditBtn">Lagre</button>
+          </menu>
+        </form>
+      </dialog>
+
+      <section aria-labelledby="roomsPreviewTitle">
+        <h2 id="roomsPreviewTitle">Rom (preview)</h2>
+        <ul id="roomsPreview">
           <li>Dobbeltrom med sjøutsikt – 1200 kr/natt</li>
           <li>Standard dobbeltrom – 950 kr/natt</li>
           <li>Familierom – 1600 kr/natt</li>
@@ -71,7 +99,7 @@
     </main>
 
     <footer>
-      <small>© Stay</small>
+      <small>Stay</small>
     </footer>
   </body>
 </html>
