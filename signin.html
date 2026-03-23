@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign in – Stay Bed & Breakfast</title>
+  <link rel="stylesheet" href="css/hotellist.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+<header class="header">
+  <nav class="navbar">
+    <a class="logo" href="Hotellist.html">Stay Bed & Breakfast</a>
+    <ul class="menu">
+      <li><a href="register.html">Register</a></li>
+      <li><a href="signin.html">Sign in</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="auth-main">
+  <div class="auth-card">
+
+    <div class="auth-heading">
+      <h1>Welcome back</h1>
+      <p>Don't have an account? <a href="register.html">Register</a></p>
+    </div>
+
+    <form class="auth-form">
+
+      <div class="field">
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" placeholder="john@example.com" required>
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Your password" required>
+      </div>
+
+      <div class="field checkbox-field">
+        <label class="checkbox-label">
+          <input type="checkbox" name="remember">
+          Remember me
+        </label>
+        <a href="#" class="forgot-link">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="btn-submit">Sign in</button>
+
+    </form>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <p>© 2026 Stay Bed & Breakfast</p>
+</footer>
+
+</body>
+</html>
