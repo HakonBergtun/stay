@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stay – Booking</title>
+    <link rel="stylesheet" href="./CSS/bookingside.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Stay</h1>
+      <nav>
+        <a href="./infoside.html">Info</a>
+        <a href="./bookingside.html">Booking</a>
+      </nav>
+    </header>
+
+    <main>
+      <section>
+        <h2>Bestill rom</h2>
+
+        <form>
+          <label>
+            Navn
+            <input type="text" name="name" placeholder="Ola Nordmann" required />
+          </label>
+
+          <label>
+            E-post
+            <input type="email" name="email" placeholder="ola@example.com" required />
+          </label>
+
+          <label>
+            Fra dato
+            <input type="date" name="fromDate" required />
+          </label>
+
+          <label>
+            Til dato
+            <input type="date" name="toDate" required />
+          </label>
+
+          <label>
+            Velg rom
+            <select name="roomId" required>
+              <option value="" selected disabled>Velg rom</option>
+              <option value="1">Dobbeltrom med sjøutsikt</option>
+              <option value="2">Standard dobbeltrom</option>
+              <option value="3">Familierom</option>
+            </select>
+          </label>
+
+          <label>
+            Melding (valgfritt)
+            <textarea name="message" rows="4"></textarea>
+          </label>
+
+          <button type="submit">Send booking</button>
+        </form>
+      </section>
+
+      <section>
+        <h2>Rom (preview)</h2>
+        <ul>
+          <li>Dobbeltrom med sjøutsikt – 1200 kr/natt</li>
+          <li>Standard dobbeltrom – 950 kr/natt</li>
+          <li>Familierom – 1600 kr/natt</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <small>© Stay</small>
+    </footer>
+  </body>
+</html>
