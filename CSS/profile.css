@@ -32,6 +32,32 @@ section {
   border-radius: 8px;
 }
 
+#pageMessage {
+  min-height: 1.2em;
+  color: #333;
+}
+
+.profile-card {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #ddd;
+}
+
+.profile-info p {
+  margin: 6px 0;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -45,8 +71,7 @@ label {
 }
 
 input,
-select,
-textarea {
+select {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 6px;
@@ -65,56 +90,17 @@ button:hover {
   opacity: 0.9;
 }
 
-/* Feedback-melding */
-#pageMessage {
-  min-height: 1.2em;
-  color: #333;
-}
-
-/* Liste over bookinger (cards) */
-#bookingsList {
+.small {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
+  max-width: 260px;
 }
 
-.booking-card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 10px;
+.muted {
+  color: #666;
 }
 
-.booking-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 8px;
-}
-
-.booking-actions button {
-  background: #555;
-}
-
-.booking-actions button[data-action="delete"] {
+.danger {
   background: #b00020;
-}
-
-/* Dialog */
-dialog {
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 16px;
-  max-width: 420px;
-  width: 90%;
-}
-
-menu {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  padding: 0;
-  margin-top: 10px;
-}
-
-#cancelEditBtn {
-  background: #777;
 }
