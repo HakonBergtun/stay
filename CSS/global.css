@@ -1,0 +1,17 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #ffffff;
+  --text: #000000;
+  --muted-text: #6b6b6b;
+  --logo: #8FAE9E;
+  --border: #e5e5e5;
+  --soft-bg: #F7F3EF;
+
+  --radius: 0.75rem;
+  --container: 1200px;
+}
