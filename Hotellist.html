@@ -1,137 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
+a  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hotel List</title>
+  <title>Hotel List – Stay Bed & Breakfast</title>
   <link rel="stylesheet" href="css/hotellist.css">
 </head>
-
 <body>
 
-  <header class="header">
-    <nav class="navbar">
-      <a class="logo" href="#">Stay Bed & Breakfast</a>
-
-      <ul class="menu">
-        <li><a href="#">Register</a></li>
-        <li><a href="#">Sign in</a></li>
-      </ul>
-    </nav>
-
-    <section class="searchbar">
-      <form class="search-form">
-        <label>
-          Destination
-          <input type="text" placeholder="Where are you going?">
-        </label>
-
-        <label>
-          Dates
-          <input type="text" placeholder="Select dates">
-        </label>
-
-        <label>
-          Guests
-          <input type="text" placeholder="Add guests">
-        </label>
-
-        <button type="submit">Search</button>
-      </form>
-    </section>
-  </header>
-
-
-  <main class="main">
-
-    <aside class="filters">
-      <h2>Filters</h2>
-
-      <h3>Price per night</h3>
-      <label>Min <input type="number" placeholder="500"></label>
-      <label>Max <input type="number" placeholder="2500"></label>
-
-      <h3>Stars</h3>
-      <label><input type="checkbox"> 5 star</label><br>
-      <label><input type="checkbox"> 4 star</label><br>
-      <label><input type="checkbox"> 3 star</label><br>
-
-      <h3>Amenities</h3>
-      <label><input type="checkbox"> Free Wi-Fi</label><br>
-      <label><input type="checkbox"> Breakfast</label><br>
-      <label><input type="checkbox"> Pool</label><br>
-      <label><input type="checkbox"> Gym</label><br>
-
-      <button type="button">Clear filters</button>
-    </aside>
-
-
-    <section class="results">
-      <h1>Hotels in Oslo</h1>
-      <p>Showing 3 results</p>
+<header class="header">
+  <nav class="navbar">
+    <a class="logo" href="#">Stay Bed & Breakfast</a>
+    <ul class="menu">
+      <li><a href="register.html">Register</a></li>
+      <li><a href="signin.html">Sign in</a></li>
+    </ul>
+  </nav>
+  <section class="searchbar">
+    <form class="search-form">
       <label>
+        Destination
+        <input type="text" placeholder="Where are you going?">
+      </label>
+      <label>
+        Check-in
+        <input type="date">
+      </label>
+      <label>
+        Check-out
+        <input type="date">
+      </label>
+      <label>
+        Guests
+        <input type="text" placeholder="2 adults, 1 room">
+      </label>
+      <button type="submit">Search</button>
+    </form>
+  </section>
+</header>
+
+<main class="main">
+  <aside class="filters">
+    <h2>Filters</h2>
+
+    <h3>Price per night (NOK)</h3>
+    <div class="price-inputs">
+      <label>
+        Min
+        <input type="number" placeholder="500" min="0">
+      </label>
+      <label>
+        Max
+        <input type="number" placeholder="5000" min="0">
+      </label>
+    </div>
+
+    <h3>Star rating</h3>
+    <label><input type="checkbox"> ★★★★★ 5 stars</label>
+    <label><input type="checkbox"> ★★★★☆ 4 stars</label>
+    <label><input type="checkbox"> ★★★☆☆ 3 stars</label>
+    <label><input type="checkbox"> ★★☆☆☆ 2 stars</label>
+    <label><input type="checkbox"> ★☆☆☆☆ 1 star</label>
+
+    <h3>Amenities</h3>
+    <label><input type="checkbox"> Free Wi-Fi</label>
+    <label><input type="checkbox"> Breakfast included</label>
+    <label><input type="checkbox"> Pool</label>
+    <label><input type="checkbox"> Gym</label>
+    <label><input type="checkbox"> Spa</label>
+    <label><input type="checkbox"> Parking</label>
+
+    <div class="filter-actions">
+      <button class="btn-apply" type="button">Apply filters</button>
+      <button class="btn-clear" type="button">Clear</button>
+    </div>
+  </aside>
+
+  <section class="results">
+    <div class="results-header">
+      <div>
+        <h1>Hotels in Oslo</h1>
+        <p class="results-meta">Showing 3 properties</p>
+      </div>
+      <div class="sort-control">
         Sort by:
         <select>
           <option>Recommended</option>
           <option>Price (low to high)</option>
+          <option>Price (high to low)</option>
           <option>Guest rating</option>
+          <option>Stars</option>
         </select>
-      </label>
+      </div>
+    </div>
 
+    <div class="hotel-list">
 
-      <section class="hotel-list">
-        <article class="hotel">
-          <div class="hotel-image">Image</div>
-
-          <div class="hotel-info">
-            <h2>Hotel</h2>
-            <p>★★★★☆ · By · 0.8 km to center</p>
-            <p>Free Wi-Fi · Breakfast · Gym</p>
-
-            <div class="hotel-price">
-              <p class="price"><strong>1,490 NOK / night</strong></p>
-              <button type="button">View deal</button>
+      <article class="hotel">
+        <div class="hotel-image">Image</div>
+        <div class="hotel-info">
+          <h2>Grand Hotel Oslo</h2>
+          <p>★★★★☆ · Karl Johans gate · 0.8 km to centre</p>
+          <p>Free Wi-Fi · Breakfast · Gym</p>
+          <div class="hotel-price">
+            <div>
+              <p class="price"><strong>1,490 NOK</strong></p>
+              <p class="price-label">per night</p>
             </div>
+            <button type="button">View deal</button>
           </div>
-        </article>
+        </div>
+      </article>
 
-        <article class="hotel">
-          <div class="hotel-image">Image</div>
-
-          <div class="hotel-info">
-            <h2>Hotel 2</h2>
-            <p>★★★★★ · By · 1.4 km to center</p>
-            <p>Spa · Pool · Restaurant</p>
-
-            <div class="hotel-price">
-              <p class="price"><strong>2,380 NOK / night</strong></p>
-              <button type="button">View deal</button>
+      <article class="hotel">
+        <div class="hotel-image">Image</div>
+        <div class="hotel-info">
+          <h2>Thon Hotel Opera</h2>
+          <p>★★★★★ · Bjørvika · 1.4 km to centre</p>
+          <p>Spa · Pool · Restaurant</p>
+          <div class="hotel-price">
+            <div>
+              <p class="price"><strong>2,380 NOK</strong></p>
+              <p class="price-label">per night</p>
             </div>
+            <button type="button">View deal</button>
           </div>
-        </article>
+        </div>
+      </article>
 
-        <article class="hotel">
-          <div class="hotel-image">Image</div>
-
-          <div class="hotel-info">
-            <h2>Hotel 3</h2>
-            <p>★★★☆☆ · By · 2.2 km to center</p>
-            <p>Free Wi-Fi · Shared kitchen · Laundry</p>
-
-            <div class="hotel-price">
-              <p class="price"><strong>940 NOK / night</strong></p>
-              <button type="button">View deal</button>
+      <article class="hotel">
+        <div class="hotel-image">Image</div>
+        <div class="hotel-info">
+          <h2>Budget Inn Grünerløkka</h2>
+          <p>★★★☆☆ · Grünerløkka · 2.2 km to centre</p>
+          <p>Free Wi-Fi · Shared kitchen · Laundry</p>
+          <div class="hotel-price">
+            <div>
+              <p class="price"><strong>940 NOK</strong></p>
+              <p class="price-label">per night</p>
             </div>
+            <button type="button">View deal</button>
           </div>
-        </article>
-      </section>
-    </section>
-  </main>
+        </div>
+      </article>
 
+    </div>
+  </section>
 
-  <footer class="footer">
-    <p>© 2026 Stay Bed & Breakfast</p>
-  </footer>
+</main>
+
+<footer class="footer">
+  <p>© 2026 Stay Bed & Breakfast</p>
+</footer>
 
 </body>
 </html>

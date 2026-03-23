@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register – Stay Bed & Breakfast</title>
+  <link rel="stylesheet" href="css/hotellist.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+<header class="header">
+  <nav class="navbar">
+    <a class="logo" href="Hotellist.html">Stay Bed & Breakfast</a>
+    <ul class="menu">
+      <li><a href="register.html">Register</a></li>
+      <li><a href="signin.html">Sign in</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="auth-main">
+  <div class="auth-card">
+
+    <div class="auth-heading">
+      <h1>Create an account</h1>
+      <p>Already have an account? <a href="signin.html">Sign in</a></p>
+    </div>
+
+    <form class="auth-form">
+
+      <div class="form-row two-col">
+        <div class="field">
+          <label for="first-name">First name</label>
+          <input type="text" id="first-name" name="first_name" placeholder="John" required>
+        </div>
+        <div class="field">
+          <label for="last-name">Last name</label>
+          <input type="text" id="last-name" name="last_name" placeholder="Doe" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" placeholder="john@example.com" required>
+      </div>
+
+      <div class="form-row two-col">
+        <div class="field">
+          <label for="phone">Phone number</label>
+          <input type="tel" id="phone" name="phone" placeholder="+47 000 00 000">
+        </div>
+        <div class="field">
+          <label for="dob">Date of birth</label>
+          <input type="date" id="dob" name="dob">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Min. 8 characters" required>
+      </div>
+
+      <div class="field">
+        <label for="confirm-password">Confirm password</label>
+        <input type="password" id="confirm-password" name="confirm_password" placeholder="Repeat your password" required>
+      </div>
+
+      <div class="field checkbox-field">
+        <label class="checkbox-label">
+          <input type="checkbox" required>
+          I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>
+        </label>
+      </div>
+
+      <button type="submit" class="btn-submit">Create account</button>
+
+    </form>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <p>© 2026 Stay Bed & Breakfast</p>
+</footer>
+
+</body>
+</html>
