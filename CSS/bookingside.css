@@ -1,120 +1,30 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-header,
-main,
-footer {
-  padding: 16px;
-}
-
-header {
-  border-bottom: 1px solid #ddd;
-}
-
-nav a {
-  margin-right: 12px;
-  text-decoration: none;
-  color: #333;
-}
-
-main {
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-section {
-  margin-bottom: 24px;
-  padding: 12px;
-  border: 1px solid #eee;
-  border-radius: 8px;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-label {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-input,
-select,
-textarea {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-
-button {
-  padding: 10px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  background: #333;
-  color: white;
-}
-
-button:hover {
-  opacity: 0.9;
-}
-
-/* Feedback-melding */
-#pageMessage {
-  min-height: 1.2em;
-  color: #333;
-}
-
-/* Liste over bookinger (cards) */
-#bookingsList {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.booking-card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 10px;
-}
-
 .booking-actions {
   display: flex;
-  gap: 10px;
-  margin-top: 8px;
+  gap: 8px;
 }
 
 .booking-actions button {
-  background: #555;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.booking-actions button[data-action="edit"] {
+  background: var(--logo);
+  color: white;
 }
 
 .booking-actions button[data-action="delete"] {
   background: #b00020;
+  color: white;
 }
 
-/* Dialog */
-dialog {
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  padding: 16px;
-  max-width: 420px;
-  width: 90%;
-}
-
-menu {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  padding: 0;
-  margin-top: 10px;
-}
-
-#cancelEditBtn {
-  background: #777;
+.filters textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  resize: vertical;
 }
