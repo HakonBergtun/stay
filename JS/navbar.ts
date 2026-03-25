@@ -18,3 +18,5 @@ if (bookBtn) {
         window.location.href = 'bookingside.html';
     });
 }
+
+
