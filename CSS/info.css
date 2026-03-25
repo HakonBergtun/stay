@@ -4,23 +4,36 @@
     padding: 0;
     box-sizing: border-box;
 }
+<<<<<<< HEAD
 html {
     scroll-behavior: smooth;
     font-size: 18px;
 }
+=======
+
+>>>>>>> ec45709082a30517f656c571d4f734f9a171107e
 body {
     font-family: 'Poppins', sans-serif;
     background: var(--background);
     color: var(--text);
     line-height: 1.6;
+<<<<<<< HEAD
     font-size: 20px;
     
+=======
+    font-size: 14px;
+    align-items: center;
+>>>>>>> ec45709082a30517f656c571d4f734f9a171107e
 }
 
 
 .container {
+<<<<<<< HEAD
     max-width: 1200px;
     width: 100%;
+=======
+    max-width: 65%;
+>>>>>>> ec45709082a30517f656c571d4f734f9a171107e
     margin: 0 auto;
     padding: 2rem;
 }
@@ -29,12 +42,17 @@ body {
 .hero {
     display: flex;
     gap: 2rem;
+<<<<<<< HEAD
     align-items: stretch;
+=======
+    align-items: center;
+>>>>>>> ec45709082a30517f656c571d4f734f9a171107e
     margin-bottom: 2rem;
     min-height: 300px;
 }
 
 img {
+<<<<<<< HEAD
     border-radius: 20px;
    
 }
@@ -53,6 +71,16 @@ img {
     height: auto;
     margin-top: 30px;
     object-fit: cover;
+=======
+  border-radius: 5px;
+    object-fit: cover;
+}
+
+.hero-image img {
+    width: 200px;
+    height: 250px;
+    margin-top: 30px;
+>>>>>>> ec45709082a30517f656c571d4f734f9a171107e
 }
 
 
@@ -64,11 +92,19 @@ img {
 
 h1, h2 {
     font-family: 'Playfair Display', serif;
+<<<<<<< HEAD
    
 }
 
 h1 {
   
+=======
+    font-size: 14px;
+}
+
+h1 {
+    font-size: 1.5rem;
+>>>>>>> ec45709082a30517f656c571d4f734f9a171107e
     margin-bottom: 0.5rem;
 }
 
@@ -84,19 +120,32 @@ h2 {
 
 .details p {
     margin-bottom: 0.4rem;
+<<<<<<< HEAD
 
+=======
+    font-size: 13px;
+>>>>>>> ec45709082a30517f656c571d4f734f9a171107e
 }
 
 
 .btn{
     margin-top: 1rem;
+<<<<<<< HEAD
     padding: 0.6rem 2rem;
+=======
+    padding: 0.3rem 1rem;
+>>>>>>> ec45709082a30517f656c571d4f734f9a171107e
     border: 2px solid transparent;
     background-color: var(--primary);
     color: white;
     font-family: 'Poppins', sans-serif;
+<<<<<<< HEAD
     font-size: 1.2rem;
     border-radius: 1.5rem; 
+=======
+    font-size: 0.7rem;
+    border-radius: 1.2rem; 
+>>>>>>> ec45709082a30517f656c571d4f734f9a171107e
     cursor: pointer;
     transition: all 0.25s ease;
     
@@ -124,14 +173,23 @@ h2 {
     border: 1px solid var(--secondary);
     border-radius: 20px;
     background-color: transparent;
+<<<<<<< HEAD
     
 
+=======
+    font-size: 0.9rem;
+    font-size: 10px;
+>>>>>>> ec45709082a30517f656c571d4f734f9a171107e
 }
 
 .description {
     margin-top: 1.5rem;
     max-width: 600px;
+<<<<<<< HEAD
    
+=======
+    font-size: 12px;
+>>>>>>> ec45709082a30517f656c571d4f734f9a171107e
 }
 
 
