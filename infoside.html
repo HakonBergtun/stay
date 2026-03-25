@@ -1,61 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!doctype html>
+<html lang="nb">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="CSS/info.css">
-    <link rel="stylesheet" href="CSS/global.css">
-</head>
-<body>
-<main class="container" aria-labelledby="hotell-navn">
+    <link rel="stylesheet" href="CSS/info.css" />
+    <link rel="stylesheet" href="CSS/global.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <a href="index.html" class="logo">
+        <img src="/assets/logo.png" alt="Stay logo" />
+      </a>
 
-   
-    <section class="hero" aria-label="Hotelloversikt">
+      <div class="hamburger" id="hamburger">
+        <img src="assets/menu.png" alt="meny" />
+      </div>
 
-        
+      <nav class="nav-links" id="nav-links">
+        <a href="index.html">Hjem</a>
+        <a href="kontaktoss.html">Kontakt Oss</a>
+        <a href="FAQ.html">FAQ</a>
+        <a href="omoss.html">Om Oss</a>
+      </nav>
+
+      <div class="user-icon">
+        <img src="/assets/icon.png" alt="Bruker profil" />
+      </div>
+    </header>
+
+    <main class="container" aria-labelledby="hotell-navn">
+      <section class="hero" aria-label="Hotelloversikt">
         <article class="hero-content">
-            <header>
-                <h1 id="hotell-navn">Grand Fjord Hotell</h1>
-                <p class="location">Bergen, Norge</p>
-            </header>
+          <header>
+            <h1 id="hotell-navn">Grand Fjord Hotell</h1>
+            <p class="location">Bergen, Norge</p>
+          </header>
 
-            <div class="details" role="group" aria-label="Hotell detaljer">
-                <p><strong>Pris:</strong> 1200kr per natt</p>
-                <p><strong>Romtype:</strong> double bed</p>
-                <p><strong>Tilgjengelighet:</strong>  Ledig rom</p>
-            </div>
+          <div class="details" role="group" aria-label="Hotell detaljer">
+            <p><strong>Pris:</strong> 1200kr per natt</p>
+            <p><strong>Romtype:</strong> double bed</p>
+            <p><strong>Tilgjengelighet:</strong> Ledig rom</p>
+            <p><strong>Modern:</strong> Nye og moderne møbler</p>
+            <p><strong>Utsikt:</strong> Fantastisk utsikt over fjorden</p>
+          </div>
 
-            <button class="btn" aria-label="Bestill rom på Grand Fjord Hotell">
-                Bestill nå
-            </button>
+          <button
+            class="btn"
+            id="book-btn"
+            aria-label="Bestill rom på Grand Fjord Hotell"
+          >
+            Bestill nå
+          </button>
         </article>
 
-        
         <figure class="hero-image">
-            <img src="assets/images/rom2.png" alt="Moderne hotellbygning" />
+          <img src="/assets/image01.png" alt="Moderne hotellbygning" />
         </figure>
+      </section>
 
-    </section>
-
-    
-    <section class="facilities" aria-labelledby="fasiliteter-tittel">
+      <section class="facilities" aria-labelledby="fasiliteter-tittel">
         <h2 id="fasiliteter-tittel">Fasiliteter</h2>
         <ul>
-            <li>Gratis Wi-Fi</li>
-            <li>Frokost inkludert</li>
-            <li>Parkering</li>
-            <li>Treningsrom</li>
+          <li>Gratis Wi-Fi</li>
+          <li>Frokost inkludert</li>
+          <li>Parkering</li>
+          <li>Treningsrom</li>
+          <li>Svømmebasseng</li>
         </ul>
-    </section>
+      </section>
 
-    <section class="description" aria-labelledby="beskrivelse-tittel">
+      <section class="description" aria-labelledby="beskrivelse-tittel">
         <h2 id="beskrivelse-tittel">Beskrivelse</h2>
         <p>
-            Et moderne hotell med fantastisk utsikt over fjorden. Perfekt for både ferie og forretningsreiser.
+          Et moderne hotell med fantastisk utsikt over fjorden. Perfekt for både
+          ferie og forretningsreiser.
         </p>
-    </section>
+      </section>
 
-</main>
-</body>
+      <footer class="footer">
+        <nav class="socials">
+          <a href="https://github.com/HakonBergtun/stay/tree/main"
+            ><img src="assets/github.png" alt="link til github side"
+          /></a>
+          <a href="https://www.facebook.com/"
+            ><img src="assets/facebook.png" alt="link til Facebook side"
+          /></a>
+          <a href="https://www.instagram.com/?flo=true"
+            ><img src="assets/instagram-.png" alt="link til Instagram side"
+          /></a>
+        </nav>
+
+        <p class="footer-bottom">Besøk våre sosiale medier 😄</p>
+      </footer>
+    </main>
+    <script src="JS/navbar.js" defer></script>
+  </body>
 </html>
