@@ -1,0 +1,172 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+    font-size: 18px;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 20px;
+    
+}
+
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+
+.hero {
+    display: flex;
+    gap: 2rem;
+    align-items: stretch;
+    margin-bottom: 2rem;
+    min-height: 300px;
+}
+
+img {
+    border-radius: 20px;
+   
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.hero-image img {
+    width: 100%;
+    max-width: 330px;
+    height: auto;
+    margin-top: 30px;
+    object-fit: cover;
+}
+
+
+
+.hero-content, .hero-image {
+    flex: 1;
+}
+
+
+h1, h2 {
+    font-family: 'Playfair Display', serif;
+   
+}
+
+h1 {
+  
+    margin-bottom: 0.5rem;
+}
+
+h2 {
+    margin-bottom: 1rem;
+}
+
+.location {
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+
+.details p {
+    margin-bottom: 0.4rem;
+
+}
+
+
+.btn{
+    margin-top: 1rem;
+    padding: 0.6rem 2rem;
+    border: 2px solid transparent;
+    background-color: var(--primary);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    border-radius: 1.5rem; 
+    cursor: pointer;
+    transition: all 0.25s ease;
+    
+}
+
+.btn:hover {
+   
+   box-shadow: 0 2px 0 0 var(--text);
+}
+
+.facilities {
+    margin-top: 2rem;
+}
+
+.facilities ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+  
+}
+
+.facilities li {
+    padding: 0.4rem 0.9rem;
+    border: 1px solid var(--secondary);
+    border-radius: 20px;
+    background-color: transparent;
+    
+
+}
+
+.description {
+    margin-top: 1.5rem;
+    max-width: 600px;
+   
+}
+
+
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column-reverse; 
+    }
+
+    .hero-image img {
+        height: 200px;
+        width: 250px;
+    }
+
+    .container {
+        max-width: 90%;
+        padding: 1rem;
+        align-items: center;
+        
+    }
+
+     .details p, h2, .location{
+        font-size: 20px;
+    }
+
+    .facilities li, .description {
+        font-size: 20px;
+    }
+
+    h1{
+        font-size: 1.8rem;
+    }
+
+    .btn {
+        font-size: 0.9rem;
+        padding: 0.5rem 1.5rem;
+    }
+
+}
