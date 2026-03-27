@@ -1,87 +1,101 @@
 <!doctype html>
-<html lang="no">
+<html lang="nb">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stay – Profil</title>
-    <link rel="stylesheet" href="./CSS/profile.css" />
+    <title>Profil</title>
+    <link rel="stylesheet" href="CSS/global.css" />
+    <link rel="stylesheet" href="CSS/profile.css" />
   </head>
-
   <body>
-    <header>
-      <h1>Stay</h1>
-      <nav>
-        <a href="./bookingside.html">Booking</a>
-        <a href="./profile.html" aria-current="page">Profil</a>
+    <header class="navbar">
+      <a href="index.html" class="logo">
+        <img src="/assets/logo.png" alt="Stay logo" />
+      </a>
+
+      <div class="hamburger" id="hamburger">
+        <img src="assets/menu.png" alt="meny" />
+      </div>
+
+      <nav class="nav-links" id="nav-links">
+        <a href="index.html">Hjem</a>
+        <a href="Hotellist.html">Hotell</a>
+        <a href="infoside.html">Info</a>
+        <a href="bookingside.html">Booking</a>
+        <a href="profile.html">Profil</a>
+        <a href="register.html">Registrer</a>
+        <a href="signin.html">Logg inn</a>
+        <a href="kontaktoss.html">Kontakt Oss</a>
+        <a href="FAQ.html">FAQ</a>
+        <a href="omoss.html">Om Oss</a>
       </nav>
+
+      <div class="user-icon">
+        <img src="/assets/icon.png" alt="Bruker profil" />
+      </div>
     </header>
 
-    <main>
+    <main class="container" aria-labelledby="profil-tittel">
       <p id="pageMessage" role="status" aria-live="polite"></p>
 
-      <section aria-labelledby="profileTitle">
-        <h2 id="profileTitle">Min profil</h2>
+      <section class="hero" aria-label="Profiloversikt">
+        <article class="hero-content">
+          <header>
+            <h1 id="profil-tittel">Min profil</h1>
+            <p class="location" id="profileEmail">ola@example.com</p>
+          </header>
 
-        <div class="profile-card" id="profileCard">
-          <div class="avatar" aria-hidden="true"></div>
-
-          <div class="profile-info">
-            <p><strong>Brukernavn:</strong> <span id="profileUserName">-</span></p>
-            <p><strong>E-post:</strong> <span id="profileEmail">-</span></p>
-            <p><strong>Opprettet:</strong> <span id="profileCreated">-</span></p>
-            <p><strong>Sist oppdatert:</strong> <span id="profileUpdated">-</span></p>
+          <div class="details" role="group" aria-label="Profil detaljer">
+            <p><strong>Brukernavn:</strong> <span id="profileUserName">Ola Nordmann</span></p>
+            <p><strong>Opprettet:</strong> <span id="profileCreated">2025-09-01</span></p>
+            <p><strong>Oppdatert:</strong> <span id="profileUpdated">2025-09-10</span></p>
           </div>
-        </div>
+        </article>
 
-        <label class="small">
-          Velg bruker (dev)
-          <select id="userSelect">
-            <option value="1">User #1</option>
-          </select>
-        </label>
-
-        <button id="refreshProfileBtn" type="button">Oppdater profilvisning</button>
+        <figure class="hero-image">
+          <div class="profile-avatar" aria-hidden="true"></div>
+        </figure>
       </section>
 
-      <section aria-labelledby="editProfileTitle">
-        <h2 id="editProfileTitle">Rediger profil</h2>
+      <section class="profile-form-section" aria-labelledby="rediger-profil">
+        <h2 id="rediger-profil">Rediger profil</h2>
 
-        <form id="editProfileForm">
+        <form id="editProfileForm" class="profile-form">
           <input type="hidden" id="editUserId" name="id" value="" />
 
-          <label>
-            Brukernavn
-            <input type="text" id="userName" name="userName" required />
-          </label>
+          <label for="userName">Brukernavn</label>
+          <input type="text" id="userName" name="userName" required />
 
-          <label>
-            E-post
-            <input type="email" id="email" name="email" required />
-          </label>
+          <label for="email">E-post</label>
+          <input type="email" id="email" name="email" required />
 
-          <label>
-            Passord
-            <input type="password" id="password" name="password" required />
-          </label>
+          <label for="password">Passord</label>
+          <input type="password" id="password" name="password" required />
 
-          <button type="submit" id="saveProfileBtn">Lagre endringer</button>
+          <div class="profile-buttons">
+            <button class="btn" type="submit" id="saveProfileBtn">Lagre endringer</button>
+            <button class="btn delete-btn" type="button" id="deleteUserBtn">Slett bruker</button>
+          </div>
         </form>
-      </section>
-
-      <section aria-labelledby="dangerTitle">
-        <h2 id="dangerTitle">Slett konto</h2>
-        <p class="muted">
-          Dette kan ikke angres. Etter sletting skal appen navigere til landing/login og resette currentUser.
-        </p>
-
-        <button id="deleteUserBtn" type="button" class="danger">
-          Slett bruker
-        </button>
       </section>
     </main>
 
-    <footer>
-      <small>© Stay</small>
+    <footer class="footer">
+      <nav class="socials">
+        <a href="https://github.com/HakonBergtun/stay/tree/main">
+          <img src="assets/github.png" alt="link til github side" />
+        </a>
+        <a href="https://www.facebook.com/">
+          <img src="assets/facebook.png" alt="link til Facebook side" />
+        </a>
+        <a href="https://www.instagram.com/?flo=true">
+          <img src="assets/instagram-.png" alt="link til Instagram side" />
+        </a>
+      </nav>
+
+      <p class="footer-bottom">Besøk våre sosiale medier 😄</p>
     </footer>
+
+    <script src="JS/navbar.js" defer></script>
   </body>
 </html>
