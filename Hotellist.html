@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hotel List – Stay Bed & Breakfast</title>
@@ -12,14 +12,14 @@
   <nav class="navbar">
     <a class="logo" href="#">Stay Bed & Breakfast</a>
     <ul class="menu">
-      <li><a href="register.html">Register</a></li>
-      <li><a href="signin.html">Sign in</a></li>
+      <li><a href="register.html">Registrer</a></li>
+      <li><a href="signin.html">Logg inn</a></li>
     </ul>
   </nav>
   <section class="searchbar" aria-label="Hotel Search">
     <form class="search-form" aria-label="Search Hotels">
       <label>
-        Destination
+        Destinasjon
         <input type="text" placeholder="Where are you going?">
       </label>
       <label>
@@ -31,19 +31,19 @@
         <input type="date">
       </label>
       <label>
-        Guests
+        Gjester
         <input type="text" placeholder="2 adults, 1 room">
       </label>
-      <button type="submit">Search</button>
+      <button type="submit">Søk</button>
     </form>
   </section>
 </header>
 
 <main class="main">
   <aside class="filters" aria-label="Filter hotels">
-    <h2>Filters</h2>
+    <h2>Filter</h2>
 
-    <h3>Price per night (NOK)</h3>
+    <h3>Pris per natt (NOK)</h3>
     <div class="price-inputs">
       <label>
         Min
@@ -55,20 +55,20 @@
       </label>
     </div>
 
-    <h3>Star rating</h3>
-    <label><input type="checkbox"> ★★★★★ 5 stars</label>
-    <label><input type="checkbox"> ★★★★☆ 4 stars</label>
-    <label><input type="checkbox"> ★★★☆☆ 3 stars</label>
-    <label><input type="checkbox"> ★★☆☆☆ 2 stars</label>
-    <label><input type="checkbox"> ★☆☆☆☆ 1 star</label>
+    <h3>Stjernevurdering</h3>
+    <label><input type="checkbox"> ★★★★★ 5 stjerner</label>
+    <label><input type="checkbox"> ★★★★☆ 4 stjerner</label>
+    <label><input type="checkbox"> ★★★☆☆ 3 stjerner</label>
+    <label><input type="checkbox"> ★★☆☆☆ 2 stjerner</label>
+    <label><input type="checkbox"> ★☆☆☆☆ 1 stjerner</label>
 
-    <h3>Amenities</h3>
-    <label><input type="checkbox"> Free Wi-Fi</label>
-    <label><input type="checkbox"> Breakfast included</label>
-    <label><input type="checkbox"> Pool</label>
+    <h3>Fasiliteter</h3>
+    <label><input type="checkbox"> Gratis Wi-Fi</label>
+    <label><input type="checkbox"> Frokost inkludert</label>
+    <label><input type="checkbox"> Badebasseng</label>
     <label><input type="checkbox"> Gym</label>
     <label><input type="checkbox"> Spa</label>
-    <label><input type="checkbox"> Parking</label>
+    <label><input type="checkbox"> Parkering</label>
 
     <div class="filter-actions">
       <button class="btn-apply" type="button">Apply filters</button>
@@ -79,17 +79,17 @@
   <section class="results" aria-label="Hotel results">
     <div class="results-header">
       <div>
-        <h1>Hotels in Oslo</h1>
-        <p class="results-meta" aria-live="polite">Showing 3 properties</p>
+        <h1>Hoteller i Oslo</h1>
+        <p class="results-meta" aria-live="polite">Viser 3 hoteller</p>
       </div>
       <div class="sort-control">
-        Sort by:
+        Sorter etter:
         <select>
-          <option>Recommended</option>
-          <option>Price (low to high)</option>
-          <option>Price (high to low)</option>
-          <option>Guest rating</option>
-          <option>Stars</option>
+          <option>Anbefalt</option>
+          <option>Pris (lav til høy)</option>
+          <option>Pris (høy til lav)</option>
+          <option>Gjestescore</option>
+          <option>Stjerner</option>
         </select>
       </div>
     </div>
@@ -97,15 +97,15 @@
     <div class="hotel-list">
 
       <article class="hotel">
-        <div class="hotel-image">Image</div>
+        <div class="hotel-image">Bilde</div>
         <div class="hotel-info">
           <h2>Grand Hotel Oslo</h2>
-          <p>★★★★☆ · Karl Johans gate · 0.8 km to centre</p>
-          <p>Free Wi-Fi · Breakfast · Gym</p>
+          <p>★★★★☆ · Karl Johans gate · 0.8 km til sentrum</p>
+          <p>Gratis Wi-Fi · Frokost · Gym</p>
           <div class="hotel-price">
             <div>
               <p class="price"><strong>1,490 NOK</strong></p>
-              <p class="price-label">per night</p>
+              <p class="price-label">per natt</p>
             </div>
             <a type="button" href="infoside.html" aria-label="View deal for hotel">View deal</a>
           </div>
@@ -113,15 +113,15 @@
       </article>
 
       <article class="hotel">
-        <div class="hotel-image">Image</div>
+        <div class="hotel-image">Bilde</div>
         <div class="hotel-info">
           <h2>Thon Hotel Opera</h2>
-          <p>★★★★★ · Bjørvika · 1.4 km to centre</p>
+          <p>★★★★★ · Bjørvika · 1.4 km til sentrum</p>
           <p>Spa · Pool · Restaurant</p>
           <div class="hotel-price">
             <div>
               <p class="price"><strong>2,380 NOK</strong></p>
-              <p class="price-label">per night</p>
+              <p class="price-label">per natt</p>
             </div>
             <a type="button" href="infoside.html" aria-label="View deal for hotel">View deal</a>
           </div>
@@ -129,15 +129,15 @@
       </article>
 
       <article class="hotel">
-        <div class="hotel-image">Image</div>
+        <div class="hotel-image">Bilde</div>
         <div class="hotel-info">
           <h2>Budget Inn Grünerløkka</h2>
-          <p>★★★☆☆ · Grünerløkka · 2.2 km to centre</p>
-          <p>Free Wi-Fi · Shared kitchen · Laundry</p>
+          <p>★★★☆☆ · Grünerløkka · 2.2 km til sentrum</p>
+          <p>Gratis Wi-Fi · Felles kjøkken · Vaskeri</p>
           <div class="hotel-price">
             <div>
               <p class="price"><strong>940 NOK</strong></p>
-              <p class="price-label">per night</p>
+              <p class="price-label">per natt</p>
             </div>
             <a type="button" href="infoside.html" aria-label="View deal for hotel">View deal</a>
           </div>
