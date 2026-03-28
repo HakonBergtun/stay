@@ -4,6 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hotel List – Stay Bed & Breakfast</title>
   <link rel="stylesheet" href="css/hotellist.css">
+  <link rel="stylesheet" href="css/global.css">
 </head>
 <body>
 
@@ -15,8 +16,8 @@
       <li><a href="signin.html">Sign in</a></li>
     </ul>
   </nav>
-  <section class="searchbar">
-    <form class="search-form">
+  <section class="searchbar" aria-label="Hotel Search">
+    <form class="search-form" aria-label="Search Hotels">
       <label>
         Destination
         <input type="text" placeholder="Where are you going?">
@@ -39,7 +40,7 @@
 </header>
 
 <main class="main">
-  <aside class="filters">
+  <aside class="filters" aria-label="Filter hotels">
     <h2>Filters</h2>
 
     <h3>Price per night (NOK)</h3>
@@ -75,11 +76,11 @@
     </div>
   </aside>
 
-  <section class="results">
+  <section class="results" aria-label="Hotel results">
     <div class="results-header">
       <div>
         <h1>Hotels in Oslo</h1>
-        <p class="results-meta">Showing 3 properties</p>
+        <p class="results-meta" aria-live="polite">Showing 3 properties</p>
       </div>
       <div class="sort-control">
         Sort by:
@@ -106,7 +107,7 @@
               <p class="price"><strong>1,490 NOK</strong></p>
               <p class="price-label">per night</p>
             </div>
-            <a type="button" href="infoside.html">View deal</a>
+            <a type="button" href="infoside.html" aria-label="View deal for hotel">View deal</a>
           </div>
         </div>
       </article>
@@ -122,7 +123,7 @@
               <p class="price"><strong>2,380 NOK</strong></p>
               <p class="price-label">per night</p>
             </div>
-            <a type="button" href="infoside.html">View deal</a>
+            <a type="button" href="infoside.html" aria-label="View deal for hotel">View deal</a>
           </div>
         </div>
       </article>
@@ -138,7 +139,7 @@
               <p class="price"><strong>940 NOK</strong></p>
               <p class="price-label">per night</p>
             </div>
-            <a type="button" href="infoside.html">View deal</a>
+            <a type="button" href="infoside.html" aria-label="View deal for hotel">View deal</a>
           </div>
         </div>
       </article>
