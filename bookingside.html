@@ -1,121 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Booking – Stay Bed & Breakfast</title>
-  <link rel="stylesheet" href="css/hotellist.css">
-  <link rel="stylesheet" href="css/bookingside.css">
-</head>
+<!doctype html<html lang="nb">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Booking</title>
+    <link rel="stylesheet" href="CSS/global.css" />
+    <link rel="stylesheet" href="CSS/bookingside.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <a href="index.html" class="logo">
+        <img src="/assets/logo.png" alt="Stay logo" />
+      </a>
 
-<body>
-
-<header class="header">
-  <nav class="navbar">
-    <a class="logo" href="#">Stay Bed & Breakfast</a>
-    <ul class="menu">
-      <li><a href="profile.html">Profile</a></li>
-      <li><a href="bookingside.html">Bookings</a></li>
-    </ul>
-  </nav>
-
-  <section class="searchbar">
-    <form class="search-form">
-      <label>
-        Destination
-        <input type="text" placeholder="Where are you going?">
-      </label>
-      <label>
-        Check-in
-        <input type="date" id="searchFrom">
-      </label>
-      <label>
-        Check-out
-        <input type="date" id="searchTo">
-      </label>
-      <label>
-        Guests
-        <input type="text" placeholder="2 adults">
-      </label>
-      <button type="submit">Search</button>
-    </form>
-  </section>
-</header>
-
-<main class="main">
-
-  <aside class="filters">
-    <h2>New Booking</h2>
-
-    <form id="newBookingForm">
-      <label>
-        Room
-        <select id="roomId" required>
-          <option value="">Select room</option>
-        </select>
-      </label>
-
-      <label>
-        From
-        <input type="date" id="fromDate" required>
-      </label>
-
-      <label>
-        To
-        <input type="date" id="toDate" required>
-      </label>
-
-      <label>
-        Message
-        <textarea id="message"></textarea>
-      </label>
-
-      <button class="btn-apply" type="submit">Book</button>
-    </form>
-  </aside>
-
-  <section class="results">
-    <div class="results-header">
-      <div>
-        <h1>My bookings</h1>
-        <p class="results-meta" id="bookingCount">0 bookings</p>
+      <div class="hamburger" id="hamburger">
+        <img src="assets/menu.png" alt="meny" />
       </div>
-    </div>
 
-    <div class="hotel-list" id="bookingsList">
+      <nav class="nav-links" id="nav-links">
+        <a href="index.html">Hjem</a>
+        <a href="Hotellist.html">Hotell</a>
+        <a href="infoside.html">Info</a>
+        <a href="bookingside.html">Booking</a>
+        <a href="profile.html">Profil</a>
+        <a href="register.html">Registrer</a>
+        <a href="signin.html">Logg inn</a>
+        <a href="kontaktoss.html">Kontakt Oss</a>
+        <a href="FAQ.html">FAQ</a>
+        <a href="omoss.html">Om Oss</a>
+      </nav>
 
-      <article class="hotel">
-        <div class="hotel-image">Room</div>
+      <div class="user-icon">
+        <img src="/assets/icon.png" alt="Bruker profil" />
+      </div>
+    </header>
 
-        <div class="hotel-info">
-          <h2>Dobbeltrom med sjøutsikt</h2>
-          <p>2026-01-10 → 2026-01-12</p>
-          <p>Status: pending</p>
+    <main class="container" aria-labelledby="booking-tittel">
+      <p id="pageMessage" role="status" aria-live="polite"></p>
 
-          <div class="hotel-price">
-            <div>
-              <p class="price"><strong>Booking #101</strong></p>
-              <p class="price-label">userId: 1</p>
-            </div>
+      <section class="hero" aria-label="Ny booking">
+        <article class="hero-content">
+          <header>
+            <h1 id="booking-tittel">Ny booking</h1>
+            <p class="location">Send inn en bookingforespørsel</p>
+          </header>
 
-            <div class="booking-actions">
-              <button data-action="edit" data-id="101">Edit</button>
-              <button data-action="delete" data-id="101">Cancel</button>
-            </div>
-          </div>
-        </div>
-      </article>
+          <form id="newBookingForm" class="booking-form">
+            <input type="hidden" id="userId" name="userId" value="" />
 
-    </div>
+            <label for="roomId">Rom</label>
+            <select id="roomId" name="roomId" required>
+              <option value="" selected disabled>Velg rom</option>
+            </select>
 
-    <p id="emptyState" style="display:none;">No bookings yet</p>
-  </section>
+            <label for="fromDate">Fra dato</label>
+            <input type="date" id="fromDate" name="fromDate" required />
 
-</main>
+            <label for="toDate">Til dato</label>
+            <input type="date" id="toDate" name="toDate" required />
 
-<footer class="footer">
-  <p>© 2026 Stay Bed & Breakfast</p>
-</footer>
+            <label for="message">Melding</label>
+            <textarea id="message" name="message" rows="4"></textarea>
 
-</body>
+            <button class="btn" type="submit" id="createBookingBtn">Bestill nå</button>
+          </form>
+        </article>
+
+        <figure class="hero-image">
+          <img src="/assets/image01.png" alt="Hotellrom" />
+        </figure>
+      </section>
+
+      <section class="booking-list-section" aria-labelledby="mine-bookinger">
+        <h2 id="mine-bookinger">Mine bookinger</h2>
+
+        <div id="bookingsList"></div>
+        <p id="emptyState" hidden>Ingen bookinger enda.</p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <nav class="socials">
+        <a href="https://github.com/HakonBergtun/stay/tree/main">
+          <img src="assets/github.png" alt="link til github side" />
+        </a>
+        <a href="https://www.facebook.com/">
+          <img src="assets/facebook.png" alt="link til Facebook side" />
+        </a>
+        <a href="https://www.instagram.com/?flo=true">
+          <img src="assets/instagram-.png" alt="link til Instagram side" />
+        </a>
+      </nav>
+
+      <p class="footer-bottom">Besøk våre sosiale medier 😄</p>
+    </footer>
+
+    <script src="JS/navbar.js" defer></script>
+  </body>
 </html>
