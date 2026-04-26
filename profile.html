@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profil</title>
+    <script type="module" src="/JS/profile.ts"></script>
     <link rel="stylesheet" href="CSS/global.css" />
     <link rel="stylesheet" href="CSS/profile.css" />
   </head>
@@ -46,9 +47,18 @@
           </header>
 
           <div class="details" role="group" aria-label="Profil detaljer">
-            <p><strong>Brukernavn:</strong> <span id="profileUserName">Ola Nordmann</span></p>
-            <p><strong>Opprettet:</strong> <span id="profileCreated">2025-09-01</span></p>
-            <p><strong>Oppdatert:</strong> <span id="profileUpdated">2025-09-10</span></p>
+            <p>
+              <strong>Brukernavn:</strong>
+              <span id="profileUserName">Ola Nordmann</span>
+            </p>
+            <p>
+              <strong>Opprettet:</strong>
+              <span id="profileCreated">2025-09-01</span>
+            </p>
+            <p>
+              <strong>Oppdatert:</strong>
+              <span id="profileUpdated">2025-09-10</span>
+            </p>
           </div>
         </article>
 
@@ -73,8 +83,12 @@
           <input type="password" id="password" name="password" required />
 
           <div class="profile-buttons">
-            <button class="btn" type="submit" id="saveProfileBtn">Lagre endringer</button>
-            <button class="btn delete-btn" type="button" id="deleteUserBtn">Slett bruker</button>
+            <button class="btn" type="submit" id="saveProfileBtn">
+              Lagre endringer
+            </button>
+            <button class="btn delete-btn" type="button" id="deleteUserBtn">
+              Slett bruker
+            </button>
           </div>
         </form>
       </section>
