@@ -1,12 +1,3 @@
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 import express from 'express';
 //import means we are going to get something from another file or package, but in this case we are getting the express package which is a popular tool for building servers in JavaScript.
 //express is like a giant toolbox someone else built for us to use, so we do not need to build it ourselves
@@ -17,7 +8,7 @@ import cors from 'cors';
 //It only allows websites that we trust to access our server.
 const app = express(); // app is the name of our box, inside is our entire server. 
 //express() - the () means "turn on the tool and get it ready to use", like a switch that turns on the tool.
-const PORT = 3000; //this means variable called PORT has the value of 3000, this means we are telling our server to listen for requests on port 3000.
+const PORT = 4000; //this means variable called PORT has the value of 3000, this means we are telling our server to listen for requests on port 3000.
 app.use(cors());
 app.use(express.json());
 //app.use() - this line is saying "hey server, before you do anything else, make sure to use these tools first", so we are telling our server to use the cors tool and the express.json tool before it handles any requests.
@@ -25,14 +16,14 @@ app.use(express.json());
 //express.json() - data sent over the internet comes in a format called JSON,
 //express.json() translates that JSON data that we get from internet into a format the server can understand and work with.
 const hotels = [
-    { id: 1, name: "Grand Fjord Hotel", location: "Bergen", price: 1200, rooms: "double bed", modern: false, view: "golfbane", available: true },
-    { id: 2, name: "Oslo City Hotel", location: "Oslo", price: 1200, rooms: "single bed", modern: false, view: "utsikt over havet", available: true },
-    { id: 3, name: "Nordic Stay Lodge", location: "Trondheim", price: 900, rooms: "suite", modern: true, view: "utsikt fjorden", available: true }
+    { id: 1, name: "Grand Hotel Oslo", location: "Karl Johans gate - 0.8 km til sentrum", price: 1490, rooms: "double bed", modern: false, view: "golfbane", available: true, facilities: ["Gratis Wi-Fi", "Frokost", "Gym"], Description: "Grand Hotel Oslo er et ikonisk hotell som ligger i hjertet av Oslo, på den berømte Karl Johans gate. Hotellet tilbyr elegante rom med klassisk innredning og moderne fasiliteter, inkludert gratis Wi-Fi, frokost og et treningsrom. Med sin sentrale beliggenhet og historiske sjarm, er Grand Hotel Oslo et ideelt valg for både forretningsreisende og turister som ønsker å oppleve det beste av Oslo." },
+    { id: 2, name: "Thon Hotel Opera", location: "Bjørvika - 1.5km til sentrum", price: 2380, rooms: "single bed", modern: false, view: "utsikt over havet", available: true, facilities: ["Spa", "Pool", "Restaurant"], Description: "Thon Hotel Opera er et moderne hotell som ligger i det pulserende området Bjørvika, bare en kort spasertur fra Oslo sentrum. Hotellet tilbyr komfortable rom med moderne fasiliteter, inkludert gratis Wi-Fi, spa, pool og en restaurant som serverer deilige retter. Med sin sentrale beliggenhet og flotte fasiliteter, er Thon Hotel Opera et ideelt valg for både forretningsreisende og turister som ønsker å utforske Oslo." },
+    { id: 3, name: "Budget Inn Grunderløkka", location: "Grunerløkka - 2.2km til sentrum", price: 940, rooms: "suite", modern: true, view: "utsikt fjorden", available: true, facilities: ["Gratis Wi-Fi", "Felles kjøkken - Vaskeri", "Gym"], Description: "Budget Inn Grunderløkka er et budsjettvennlig hotell som tilbyr komfortable rom og en sentral beliggenhet i det trendy området Grunerløkka. Hotellet har moderne fasiliteter, inkludert gratis Wi-Fi, et felles kjøkken og vaskeri, samt et treningsrom for gjestene. Med sin unike kombinasjon av rimelige priser og praktiske fasiliteter, er Budget Inn Grunderløkka et ideelt valg for reisende som ønsker å utforske Oslo uten å sprenge budsjettet." }
 ];
 //const is variable which we store data in, and hotels is the name of that variable, the value of this variable is an array[] or a list of hotels.
 // {} - curly brackets means one hotel or one object, each object has properties like id, name, location, price, rooms, available, each property has a value f.eks id: 1, name: "Grand Fjord Hotel" etc. value and key = key is the name of the property and value is the data
 //in a real application, this data would come from a database
-app.get("api/hotels", (req, res) => {
+app.get("/api/hotels", (req, res) => {
     res.json(hotels);
 });
 //this a route - its teaching our server if someones asks THIS question, then give them THIS answer.
@@ -42,7 +33,7 @@ app.get("api/hotels", (req, res) => {
 //res.json(hotels) - this is how we send the list of all hotels back to them, we are saying "here is the list of hotels in JSON format"
 app.get("/api/hotels/:id", (req, res) => {
     const hotel = hotels.find(h => h.id === Number(req.params.id));
-    if (!hotels) {
+    if (!hotel) {
         return res.status(404).json({ error: "Hotel not found" });
     }
     res.json(hotel);
@@ -54,22 +45,8 @@ app.get("/api/hotels/:id", (req, res) => {
 //h => h.id ===.. - this is an arrow function that takes each hotel (h) and checks if its id matches the id we got from the URL
 //if (!hotels) - if nothing was found then res.status(404).json({error: "Hotel not found"}) - this means if we did not find a hotel with that id, we send back a 404 status code which means "not found" and a JSON message saying "Hotel not found"
 app.listen(PORT, () => {
-    console.log("server is running on http://localhost:${PORT}");
+    console.log(`server is running on http://localhost:${PORT}`);
 });
 //app.listen(PORT) - this means we are starting our server and telling it to LISTEN for requests on PORT 3000, like opening the door to our apartment then waiting for people to knock and ask for something.
 //() => {...} - this function is called a callback function and it says "after the server starts and is ready to listen, run this code inside the curly brackets", in this case we are just logging a message to the console that says "server is running on http://localhost:${PORT}".
 //${PORT} - this automatically gets replaced with the actual value of PORT which is 3000, so the message will say "server is running on http://localhost:3000" 
-function loadHotels() {
-    return __awaiter(this, void 0, void 0, function* () {
-        const response = yield fetch("http://localhost:3000/api/hotels");
-        const hotels = yield response.json();
-        console.log(hotels);
-    });
-}
-loadHotels();
-//function - a function is a reusable block of code which does specific task, in this specific case loadHotel is a function that fetches also called gets the list of hotels from our server and logs it to the console.
-//async stands for asynchronous and the simples way to understand it is that it allows us to do things that take time (like fetching data from a server) without freezing or blocking the rest of our code, so we can still do other things while we wait for the data to come back, in this case we can still interact with our website while we wait for the hotels data to load.
-//fetch() - this is a built inn function in JS, this function basically goes out to the internet and gets data from a specific URL, in this case we are asking it to get the list of hotels from our server at "http://localhost:3000/api/hotels"
-//await - what this does is it tells our code to wait until the fetch() function has finished getting the data, then after getting the data it will store it in the variable called response, after we get the data we store it in Hotels variable
-//res.json() - this is method that takes the response we got from the fetch and converts it from JSON format into a JavaScript object that we can understand and use then we console.log(hotels) - this will print the list of hotels to the console.
-//loadHotel - this line runs the function and starts getting or fetching the hotels data from our server.
