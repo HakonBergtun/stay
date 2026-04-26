@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logg inn – Stay Bed & Breakfast</title>
+  <link rel="stylesheet" href="css/hotellist.css">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+<header class="header">
+  <nav class="navbar" aria-label="Main navigation">
+    <a class="logo" href="Hotellist.html">Stay Bed & Breakfast</a>
+    <ul class="menu">
+      <li><a href="register.html">Registrer</a></li>
+      <li><a href="signin.html">Logg inn</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="auth-main" aria-label="Sign in">
+  <section class="auth-card">
+
+    <header class="auth-heading">
+      <h1>Velkommen tilbake</h1>
+      <p>Har du ikke en konto? <a href="register.html">Registrer deg</a></p>
+    </header>
+
+    <form class="auth-form" aria-label="Sign in form">
+
+      <div class="field">
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" placeholder="john@example.com" required>
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Your password" required>
+      </div>
+
+      <div class="field checkbox-field">
+        <label class="checkbox-label">
+          <input type="checkbox" name="remember">
+          Husk meg
+        </label>
+        <a href="#" class="forgot-link">Glemt password?</a>
+      </div>
+
+      <button type="submit" class="btn-submit">Logg inn</button>
+
+    </form>
+
+  </section>
+</main>
+
+<footer class="footer">
+  <p>© 2026 Stay Bed & Breakfast</p>
+</footer>
+
+</body>
+</html>
