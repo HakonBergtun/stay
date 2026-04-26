@@ -54,6 +54,118 @@ app.get("/api/hotels/:id", (req, res) => {
 //h => h.id ===.. - this is an arrow function that takes each hotel (h) and checks if its id matches the id we got from the URL
 //if (!hotels) - if nothing was found then res.status(404).json({error: "Hotel not found"}) - this means if we did not find a hotel with that id, we send back a 404 status code which means "not found" and a JSON message saying "Hotel not found"
 
+
+// PUT request for updating hotel information, this is for admin only, 
+// but we are not implementing authentication in this example,
+// so anyone can update the hotel information by sending a PUT request to this endpoint with the hotel id and the updated data in the request body.
+app.put("/api/hotels/:id", (req, res) => {
+    const hotelId = Number(req.params.id);
+
+    const hotel = hotels.find(h => h.id === hotelId);
+
+    if (!hotel) {
+        return res.status(404).json({ error: "Hotel not found" });
+    }
+
+    // update ONLY allowed fields
+    const { price, rooms, modern, available } = req.body;
+
+    if (price !== undefined) hotel.price = price;
+    if (rooms !== undefined) hotel.rooms = rooms;
+    if (modern !== undefined) hotel.modern = modern;
+    if (available !== undefined) hotel.available = available;
+
+    res.json({
+        message: "Hotel updated successfully",
+        hotel
+    });
+});
+
+// DELETE - removes a single facility from a hotel by its index in the array.
+// We use the facility name as a query parameter so we know exactly which one to remove.
+app.delete("/api/hotels/:id/facilities", (req, res) => {
+    const hotel = hotels.find(h => h.id === Number(req.params.id));
+
+    if (!hotel) {
+        return res.status(404).json({ error: "Hotel not found" });
+    }
+
+    const { facility } = req.query;
+    // req.query reads the query parameters from the URL.
+    // For example: DELETE /api/hotels/1/facilities?facility=Gym
+    // req.query.facility would then be "Gym".
+    // This is different from req.params which reads the :id placeholder in the path itself.
+
+    if (!facility || typeof facility !== 'string') {
+        return res.status(400).json({ error: "facility query parameter is required" });
+    }
+
+    const index = hotel.facilities.indexOf(facility);
+    // .indexOf() finds the position of the facility in the array.
+    // If it doesn't exist, it returns -1.
+
+    if (index === -1) {
+        return res.status(404).json({ error: "Facility not found" });
+    }
+
+    hotel.facilities.splice(index, 1);
+    // .splice(index, 1) removes exactly 1 item at that position,
+    // the same way we removed hotels from the hotels array in the hotel DELETE route.
+
+    res.json({
+        message: "Facility deleted successfully",
+        facilities: hotel.facilities
+        // We send back the updated facilities array so the frontend
+        // can confirm exactly what is left without needing to re-fetch.
+    });
+});
+
+
+
+type Review = {
+    id: number;
+    hotelId: number;
+    author: string;
+    text: string;
+    date: string;
+}
+
+// In-memory reviews array, same pattern as the hotels array.
+// In a real app this would be a database table with a foreign key to the hotels table.
+const reviews: Review[] = [];
+
+// POST - creates a new review for a hotel.
+// Reviews are stored in a separate array from hotels, linked by hotelId.
+app.post("/api/reviews", (req, res) => {
+    const { hotelId, author, text, date } = req.body;
+
+    if (!hotelId || !author || !text) {
+        return res.status(400).json({ error: "hotelId, author and text are required" });
+    }
+
+    const newReview = {
+        id: reviews.length + 1,
+        hotelId: Number(hotelId),
+        author,
+        text,
+        date: date || new Date().toLocaleDateString('nb-NO'),
+    };
+
+    reviews.push(newReview);
+
+    res.status(201).json({
+        message: "Review created successfully",
+        review: newReview
+    });
+});
+
+app.get("/api/reviews/:hotelId", (req, res) => {
+    const hotelId = Number(req.params.hotelId);
+    const hotelReviews = reviews.filter(r => r.hotelId === hotelId);
+    res.json(hotelReviews);
+});
+
+
 app.listen(PORT, () => {
    console.log(`server is running on http://localhost:${PORT}`);
 });
