@@ -22,16 +22,16 @@ app.use(express.json());
 //express.json() translates that JSON data that we get from internet into a format the server can understand and work with.
 
 const hotels = [
-   { id: 1, name: "Grand Hotel Oslo", location: "Karl Johans gate - 0.8 km til sentrum", price: 1490, rooms: "double bed", modern: false, view: "golfbane", available: true, facilities: ["Gratis Wi-Fi", "Frokost", "Gym"], Description: "Grand Hotel Oslo er et ikonisk hotell som ligger i hjertet av Oslo, på den berømte Karl Johans gate. Hotellet tilbyr elegante rom med klassisk innredning og moderne fasiliteter, inkludert gratis Wi-Fi, frokost og et treningsrom. Med sin sentrale beliggenhet og historiske sjarm, er Grand Hotel Oslo et ideelt valg for både forretningsreisende og turister som ønsker å oppleve det beste av Oslo." },
-   { id: 2, name: "Thon Hotel Opera", location: "Bjørvika - 1.5km til sentrum", price: 2380, rooms: "single bed", modern: false, view: "utsikt over havet", available: true, facilities: ["Spa", "Pool", "Restaurant"], Description: "Thon Hotel Opera er et moderne hotell som ligger i det pulserende området Bjørvika, bare en kort spasertur fra Oslo sentrum. Hotellet tilbyr komfortable rom med moderne fasiliteter, inkludert gratis Wi-Fi, spa, pool og en restaurant som serverer deilige retter. Med sin sentrale beliggenhet og flotte fasiliteter, er Thon Hotel Opera et ideelt valg for både forretningsreisende og turister som ønsker å utforske Oslo." },
-   { id: 3, name: "Budget Inn Grunderløkka", location: "Grunerløkka - 2.2km til sentrum", price: 940, rooms: "suite", modern: true, view: "utsikt fjorden", available: true, facilities: ["Gratis Wi-Fi", "Felles kjøkken - Vaskeri", "Gym"], Description: "Budget Inn Grunderløkka er et budsjettvennlig hotell som tilbyr komfortable rom og en sentral beliggenhet i det trendy området Grunerløkka. Hotellet har moderne fasiliteter, inkludert gratis Wi-Fi, et felles kjøkken og vaskeri, samt et treningsrom for gjestene. Med sin unike kombinasjon av rimelige priser og praktiske fasiliteter, er Budget Inn Grunderløkka et ideelt valg for reisende som ønsker å utforske Oslo uten å sprenge budsjettet." }
+    { id: 1, name: "Grand Hotel Oslo", location: "Karl Johans gate - 0.8 km til sentrum", price: 1490, rooms: "double bed", modern: false, view: "golfbane", available: true, facilities: ["Gratis Wi-Fi", "Frokost", "Gym"], Description: "Grand Hotel Oslo er et ikonisk hotell som ligger i hjertet av Oslo, på den berømte Karl Johans gate. Hotellet tilbyr elegante rom med klassisk innredning og moderne fasiliteter, inkludert gratis Wi-Fi, frokost og et treningsrom. Med sin sentrale beliggenhet og historiske sjarm, er Grand Hotel Oslo et ideelt valg for både forretningsreisende og turister som ønsker å oppleve det beste av Oslo." },
+    { id: 2, name: "Thon Hotel Opera", location: "Bjørvika - 1.5km til sentrum", price: 2380, rooms: "single bed", modern: false, view: "utsikt over havet", available: true, facilities: ["Spa", "Pool", "Restaurant"], Description: "Thon Hotel Opera er et moderne hotell som ligger i det pulserende området Bjørvika, bare en kort spasertur fra Oslo sentrum. Hotellet tilbyr komfortable rom med moderne fasiliteter, inkludert gratis Wi-Fi, spa, pool og en restaurant som serverer deilige retter. Med sin sentrale beliggenhet og flotte fasiliteter, er Thon Hotel Opera et ideelt valg for både forretningsreisende og turister som ønsker å utforske Oslo." },
+    { id: 3, name: "Budget Inn Grunderløkka", location: "Grunerløkka - 2.2km til sentrum", price: 940, rooms: "suite", modern: true, view: "utsikt fjorden", available: true, facilities: ["Gratis Wi-Fi", "Felles kjøkken - Vaskeri", "Gym"], Description: "Budget Inn Grunderløkka er et budsjettvennlig hotell som tilbyr komfortable rom og en sentral beliggenhet i det trendy området Grunerløkka. Hotellet har moderne fasiliteter, inkludert gratis Wi-Fi, et felles kjøkken og vaskeri, samt et treningsrom for gjestene. Med sin unike kombinasjon av rimelige priser og praktiske fasiliteter, er Budget Inn Grunderløkka et ideelt valg for reisende som ønsker å utforske Oslo uten å sprenge budsjettet." }
 ];
 //const is variable which we store data in, and hotels is the name of that variable, the value of this variable is an array[] or a list of hotels.
 // {} - curly brackets means one hotel or one object, each object has properties like id, name, location, price, rooms, available, each property has a value f.eks id: 1, name: "Grand Fjord Hotel" etc. value and key = key is the name of the property and value is the data
 //in a real application, this data would come from a database
 
 app.get("/api/hotels", (req, res) => {
-   res.json(hotels);
+    res.json(hotels);
 });
 //this a route - its teaching our server if someones asks THIS question, then give them THIS answer.
 //app.get() - its when someone asks for something, GET means asking  for something like asking for menu at a restaurant, here we are saying "hey server, can I have the list of hotels?" - this is a GET request.
@@ -40,11 +40,11 @@ app.get("/api/hotels", (req, res) => {
 //res.json(hotels) - this is how we send the list of all hotels back to them, we are saying "here is the list of hotels in JSON format"
 
 app.get("/api/hotels/:id", (req, res) => {
-   const hotel = hotels.find(h => h.id === Number(req.params.id));
-   if (!hotel) {
-      return res.status(404).json({ error: "Hotel not found" });
-   }
-   res.json(hotel);
+    const hotel = hotels.find(h => h.id === Number(req.params.id));
+    if (!hotel) {
+        return res.status(404).json({ error: "Hotel not found" });
+    }
+    res.json(hotel);
 });
 
 // /api/hotels/:id - the :id part is a placeholder or blank space, if someone visits /api/hotels/2, then :id will be replaced with 2 etc.
@@ -167,7 +167,7 @@ app.get("/api/reviews/:hotelId", (req, res) => {
 
 
 app.listen(PORT, () => {
-   console.log(`server is running on http://localhost:${PORT}`);
+    console.log(`server is running on http://localhost:${PORT}`);
 });
 
 //app.listen(PORT) - this means we are starting our server and telling it to LISTEN for requests on PORT 3000, like opening the door to our apartment then waiting for people to knock and ask for something.

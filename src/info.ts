@@ -1,3 +1,5 @@
+import { initNavbar } from "./navbar.js";
+
 type Hotel = {
     id: number;
     name: string;
@@ -350,6 +352,12 @@ async function loadHotel(): Promise<void> {
     document.getElementById('submit-review-btn')?.addEventListener('click', () => {
         postReview(hotel.id);
     });
+
+    document.getElementById('book-btn')?.addEventListener('click', () => {
+        window.location.href = "bookingside.html";
+    });
+
 }
 
 document.addEventListener("DOMContentLoaded", loadHotel);
+document.addEventListener("DOMContentLoaded", initNavbar);
