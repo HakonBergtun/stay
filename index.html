@@ -30,11 +30,11 @@
 
     
   </nav>
-  <section class="searchbar" aria-label="Hotel Search">
+<section class="searchbar" aria-label="Hotel Search">
     <form class="search-form" aria-label="Search Hotels">
       <label>
         Destinasjon
-        <input type="text" placeholder="Velg Destinasjon!">
+        <input type="text" id="destination-input" placeholder="Velg Destinasjon!">
       </label>
       <label>
         Check-in
@@ -44,12 +44,32 @@
         Check-out
         <input type="date" id="check-out">
       </label>
-      <label>
+      <label id="guest-label">
         Gjester
-        <input type="text" placeholder="2 adults, 1 room">
+        <input type="text" id="guest-input" placeholder="1 voksen, 0 barn" readonly>
       </label>
       <button type="submit">Søk</button>
     </form>
+
+    <div class="guest-dropdown" id="guest-dropdown">
+      <div class="guest-row">
+        <span>Voksne</span>
+        <div class="guest-controls">
+          <button type="button" class="guest-btn" id="adults-minus">-</button>
+          <span id="adults-count">2</span>
+          <button type="button" class="guest-btn" id="adults-plus">+</button>
+        </div>
+      </div>
+      <div class="guest-row">
+        <span>Barn</span>
+        <div class="guest-controls">
+          <button type="button" class="guest-btn" id="child-minus">-</button>
+          <span id="child-count">0</span>
+          <button type="button" class="guest-btn" id="child-plus">+</button>
+        </div>
+      </div>
+    </div>
+
   </section>
 </header>
 
@@ -118,6 +138,6 @@
 </footer>
 
 
-<script type="module" src="js/index.ts"></script>
+<script type="module" src="JS/index.ts"></script>
 </body>
 </html>

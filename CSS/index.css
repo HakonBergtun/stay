@@ -132,6 +132,54 @@ body {
   background: var(--logo-dark);
 }
 
+/******************* GUEST SELECTOR *****************/
+.guest-selector {
+  position: relative;
+  width: 100%;
+}
+
+.guest-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  z-index: 999;
+  width: 250px;
+  box-shadow: var(--shadow-hover);
+}
+
+.guest-dropdown.open {
+  display: block;
+}
+
+.guest-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.guest-row:last-child {
+  margin-bottom: 0;
+}
+
+.guest-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.guest-btn:hover {
+  background: var(--soft-bg);
+  border-color: var(--logo);
+}
+
 /************************ MAIN LAYOUT *********************/
 .main {
   max-width: var(--container);

@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   displayHotels(hotels);
 
-  const destinationInput = document.querySelector(".search-form input[type='text']") as HTMLInputElement;
+  const destinationInput = document.querySelector("#destination-input") as HTMLInputElement;
 
   destinationInput?.addEventListener("input", () => {
     const query = destinationInput.value.toLowerCase();
@@ -79,4 +79,58 @@ document.addEventListener("DOMContentLoaded", () => {
     displayHotels(filteredHotels);
   });
 
+  const guestLabel = document.getElementById("guest-label") as HTMLElement;
+  const guestInput = document.getElementById("guest-input") as HTMLInputElement;
+  const guestDropdown = document.querySelector(".guest-dropdown") as HTMLElement;
+  const adultsCount = document.getElementById("adults-count") as HTMLElement;
+  const childCount = document.getElementById("child-count") as HTMLElement;
+
+  let adults = 2;
+  let children = 0;
+
+function updateGuestInput() {
+  guestInput.value = `${adults} voksne, ${children} barn`;
+}
+
+  guestLabel.addEventListener("click", (e) => {
+    e.stopPropagation();
+    guestDropdown?.classList.toggle("open");
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!guestInput.contains(e.target as Node) &&
+    !guestDropdown?.contains(e.target as Node)) {
+      guestDropdown?.classList.remove("open");
+    }
+  });
+
+  document.getElementById("adults-plus")?.addEventListener("click", () => {
+    adults++;
+    adultsCount.textContent = adults.toString();
+    updateGuestInput();
+  });
+
+  document.getElementById("adults-minus")?.addEventListener("click", () => {
+    if (adults > 1) {
+      adults--;
+      adultsCount.textContent = adults.toString();
+      updateGuestInput();
+    }
+  });
+
+  document.getElementById("child-plus")?.addEventListener("click", () => {
+    children++;
+    childCount.textContent = children.toString();
+    updateGuestInput();
+  });
+
+  document.getElementById("child-minus")?.addEventListener("click", () => {
+    if (children > 0) {
+      children--;
+      childCount.textContent = children.toString();
+      updateGuestInput();
+    }
+  });
+  updateGuestInput();
 });
+
