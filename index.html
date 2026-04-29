@@ -38,11 +38,11 @@
       </label>
       <label>
         Check-in
-        <input type="date">
+        <input type="date" id="check-in">
       </label>
       <label>
         Check-out
-        <input type="date">
+        <input type="date" id="check-out">
       </label>
       <label>
         Gjester
@@ -94,7 +94,6 @@
     <div class="results-header">
       <div>
         <h1>Hoteller</h1>
-        <p class="results-meta" aria-live="polite">Viser 3 hoteller</p>
       </div>
       <div class="sort-control">
         Sorter etter:
@@ -109,58 +108,6 @@
     </div>
 
     <div class="hotel-list">
-
-      <article class="hotel">
-        <div class="hotel-image">Bilde</div>
-        <div class="hotel-info">
-          <h2>Grand Hotel Oslo</h2>
-          <p>★★★★☆</p>
-          <p>Oslo</p>
-          <p>Gratis Wi-Fi · Frokost · Gym</p>
-          <div class="hotel-price">
-            <div>
-              <p class="price"><strong>1,490 NOK</strong></p>
-              <p class="price-label">per natt</p>
-            </div>
-            <a type="button" href="infoside.html" aria-label="View deal for hotel">View deal</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="hotel">
-        <div class="hotel-image">Bilde</div>
-        <div class="hotel-info">
-          <h2>Thon Hotel Opera</h2>
-          <p>★★★★★</p>
-          <p>Bergen</p>
-          <p>Spa · Pool · Restaurant</p>
-          <div class="hotel-price">
-            <div>
-              <p class="price"><strong>2,380 NOK</strong></p>
-              <p class="price-label">per natt</p>
-            </div>
-            <a type="button" href="infoside.html" aria-label="View deal for hotel">View deal</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="hotel">
-        <div class="hotel-image">Bilde</div>
-        <div class="hotel-info">
-          <h2>Budget Inn Grünerløkka</h2>
-          <p>★★★☆☆</p>
-          <p>Trondheim</p>
-          <p>Gratis Wi-Fi · Felles kjøkken · Vaskeri</p>
-          <div class="hotel-price">
-            <div>
-              <p class="price"><strong>940 NOK</strong></p>
-              <p class="price-label">per natt</p>
-            </div>
-            <a type="button" href="infoside.html" aria-label="View deal for hotel">View deal</a>
-          </div>
-        </div>
-      </article>
-
     </div>
   </section>
 
@@ -171,6 +118,6 @@
 </footer>
 
 
-<script src="js/index.ts"></script>
+<script type="module" src="js/index.ts"></script>
 </body>
 </html>
