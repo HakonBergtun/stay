@@ -95,6 +95,10 @@ function updateGuestInput() {
   guestLabel.addEventListener("click", (e) => {
     e.stopPropagation();
     guestDropdown?.classList.toggle("open");
+
+    const rect = guestInput.getBoundingClientRect();
+    guestDropdown.style.left = rect.left + "px";
+    guestDropdown.style.top = rect.bottom + 12 + "px";
   });
 
   document.addEventListener("click", (e) => {

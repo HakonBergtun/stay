@@ -140,9 +140,7 @@ body {
 
 .guest-dropdown {
   display: none;
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
+  position: fixed;
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: var(--radius);
