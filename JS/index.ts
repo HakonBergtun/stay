@@ -136,5 +136,41 @@ function updateGuestInput() {
     }
   });
   updateGuestInput();
+
+  const applyBtn = document.querySelector(".btn-apply");
+  const clearBtn = document.querySelector(".btn-clear");
+  const checkboxes = document.querySelectorAll(".filters input[type='checkbox']") as NodeListOf<HTMLInputElement>;
+
+  applyBtn?.addEventListener("click", () => {
+    const selectedAmenities: string[] = [];
+
+    checkboxes.forEach((checkbox) => {
+    if (checkbox.checked) {
+      selectedAmenities.push(checkbox.parentElement?.textContent?.trim() ?? "");
+    }
+  });
+
+  if (selectedAmenities.length === 0) {
+    displayHotels(hotels);
+    return;
+  }
+
+  const filtered = hotels.filter((hotel) =>
+    selectedAmenities.every((amenity) => 
+      hotel.amenities.some((a) => a.toLowerCase().includes(amenity.toLowerCase()))
+    )
+  );
+
+  displayHotels(filtered);
+});
+
+clearBtn?.addEventListener("click", () => {
+  checkboxes.forEach((checkbox) => {
+    checkbox.checked = false;
+  });
+
+  displayHotels(hotels);
+});
+
 });
 
