@@ -20,10 +20,11 @@ type Review = {
     text: string;
     date: string;
 }
-
+    //GET - function that fetches the hotel ID from the page the user is on and sends a request to the server to get all the details about that hotel, which it then renders/displays on the page.
+    //this function is saying "look at the URL, find the id number and return it. To return means either give back value or end the function and exit. If there is no id in the URL, return null."
 function getHotelId(): string | null {
-    const params = new URLSearchParams(window.location.search);
-    return params.get('id');
+    const params = new URLSearchParams(window.location.search); //window.location is URL of the current page. search is what comes after the ? in the URL. ?id=2 is called a query parameter.URLSearchParams makes it easy to read query parameters for the current page.
+    return params.get('id'); //params.get("id") grabs the ?id=2 part of URL, depending on the page, it could be 1, 2 ,3 etc, if no id returns null
 }
 
 let isEditing = false;

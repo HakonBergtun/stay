@@ -1,7 +1,5 @@
 {
-<<<<<<< HEAD
     "liveServer.settings.port": 8081
-=======
-    "liveServer.settings.port": 5501
->>>>>>> main
+   //"liveServer.settings.port": 5501
+
 }
