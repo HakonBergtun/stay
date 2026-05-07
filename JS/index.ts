@@ -8,27 +8,27 @@ document.addEventListener("DOMContentLoaded", () => {
       stars: 4,
       pricePerNight: 1200,
       amenities: ["Gratis Wi-Fi", "Breakfast", "Gym"],
-      image: null,
+      image: "./assets/index/hoteloslo.jpeg",
       href: "infoside.html"
     },
     {
       id: 2,
-      name: "Thon Hotel Opera",
+      name: "Bergen Opera Hotel",
       location: "Bergen",
       stars: 5,
       pricePerNight: 2380,
       amenities: ["Spa", "Badebasseng", "Restaurant"],
-      image: null,
+      image: "./assets/index/hotelbergen.jpg",
       href: "infoside.html"
     },
     {
       id: 3,
-      name: "Scandic Holmenkollen Park",
+      name: "Hotel Trondheim Sjøsiden",
       location: "Trondheim",
       stars: 4,
       pricePerNight: 940,
       amenities: ["Gratis Wi-Fi", "Frokost", "Gym"],
-      image: null,
+      image: "./assets/index/hoteltrondheim.jpg",
       href: "infoside.html"
     },
   ];
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       hotelList.innerHTML += `
         <article class="hotel">
-          <div class="hotel-image">Bilde</div>
+          <img class="hotel-image" src="${hotel.image}" alt="${hotel.name}">
           <div class="hotel-info">
             <h2>${hotel.name}</h2>
             <p>${stars}</p>
