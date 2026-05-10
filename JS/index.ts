@@ -183,4 +183,22 @@ clearBtn?.addEventListener("click", () => {
   displayHotels(hotels);
 });
 
+const sortSelect = document.querySelector(".sort-control select") as HTMLSelectElement;
+
+sortSelect?.addEventListener("change", () => {
+  const value = sortSelect.value;
+
+  let sortedHotels = [...hotels];
+
+  if (value === "Pris (lav til høy)") {
+    sortedHotels.sort((a, b) => a.pricePerNight - b.pricePerNight);
+  } else if (value === "Pris (høy til lav)") {
+    sortedHotels.sort((a, b) => b.pricePerNight - a.pricePerNight);
+  } else if (value === "Stjerner") {
+    sortedHotels.sort((a, b) => b.stars - a.stars);
+  }
+
+  displayHotels(sortedHotels);
+});
+
 });
