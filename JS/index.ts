@@ -142,24 +142,34 @@ function updateGuestInput() {
   const checkboxes = document.querySelectorAll(".filters input[type='checkbox']") as NodeListOf<HTMLInputElement>;
 
   applyBtn?.addEventListener("click", () => {
-    const selectedAmenities: string[] = [];
 
+    const selectedAmenities: string[] = [];
     checkboxes.forEach((checkbox) => {
-    if (checkbox.checked) {
+    if (checkbox.checked && !checkbox.classList.contains("star-checkbox")) {
       selectedAmenities.push(checkbox.parentElement?.textContent?.trim() ?? "");
     }
   });
 
-  if (selectedAmenities.length === 0) {
-    displayHotels(hotels);
-    return;
-  }
+  const selectedStars: Number[] = [];
+  document.querySelectorAll(".star-checkbox:checked").forEach((checkbox) => {
+    selectedStars.push(Number((checkbox as HTMLInputElement).value));
+  });
 
-  const filtered = hotels.filter((hotel) =>
-    selectedAmenities.every((amenity) => 
-      hotel.amenities.some((a) => a.toLowerCase().includes(amenity.toLowerCase()))
-    )
-  );
+  const minPrice = Number((document.getElementById("price-min") as HTMLInputElement).value) || 0;
+  const maxPrice = Number((document.getElementById("price-max") as HTMLInputElement).value) || Infinity;
+
+  const filtered = hotels.filter((hotel) => {
+    const amenityMatch = selectedAmenities.length === 0 ||
+      selectedAmenities.every((amenity) => 
+        hotel.amenities.some((a) => a.toLowerCase().includes(amenity.toLowerCase()))
+      );
+
+  const starMatch = selectedStars.length === 0 || selectedStars.includes(hotel.stars);
+
+  const priceMatch = hotel.pricePerNight >= minPrice && hotel.pricePerNight <= maxPrice;
+   
+  return amenityMatch && starMatch && priceMatch;
+  });
 
   displayHotels(filtered);
 });
@@ -168,9 +178,9 @@ clearBtn?.addEventListener("click", () => {
   checkboxes.forEach((checkbox) => {
     checkbox.checked = false;
   });
-
+  (document.getElementById("price-min") as HTMLInputElement).value = "";
+  (document.getElementById("price-max") as HTMLInputElement).value = "";
   displayHotels(hotels);
 });
 
 });
-
