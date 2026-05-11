@@ -8,27 +8,27 @@ document.addEventListener("DOMContentLoaded", () => {
       stars: 4,
       pricePerNight: 1200,
       amenities: ["Gratis Wi-Fi", "Breakfast", "Gym"],
-      image: null,
+      image: "./assets/index/hoteloslo.jpeg",
       href: "infoside.html"
     },
     {
       id: 2,
-      name: "Thon Hotel Opera",
+      name: "Bergen Opera Hotel",
       location: "Bergen",
       stars: 5,
       pricePerNight: 2380,
       amenities: ["Spa", "Badebasseng", "Restaurant"],
-      image: null,
+      image: "./assets/index/hotelbergen.jpg",
       href: "infoside.html"
     },
     {
       id: 3,
-      name: "Scandic Holmenkollen Park",
+      name: "Hotel Trondheim Sjøsiden",
       location: "Trondheim",
       stars: 4,
       pricePerNight: 940,
       amenities: ["Gratis Wi-Fi", "Frokost", "Gym"],
-      image: null,
+      image: "./assets/index/hoteltrondheim.jpg",
       href: "infoside.html"
     },
   ];
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       hotelList.innerHTML += `
         <article class="hotel">
-          <div class="hotel-image">Bilde</div>
+          <img class="hotel-image" src="${hotel.image}" alt="${hotel.name}">
           <div class="hotel-info">
             <h2>${hotel.name}</h2>
             <p>${stars}</p>
@@ -142,24 +142,34 @@ function updateGuestInput() {
   const checkboxes = document.querySelectorAll(".filters input[type='checkbox']") as NodeListOf<HTMLInputElement>;
 
   applyBtn?.addEventListener("click", () => {
-    const selectedAmenities: string[] = [];
 
+    const selectedAmenities: string[] = [];
     checkboxes.forEach((checkbox) => {
-    if (checkbox.checked) {
+    if (checkbox.checked && !checkbox.classList.contains("star-checkbox")) {
       selectedAmenities.push(checkbox.parentElement?.textContent?.trim() ?? "");
     }
   });
 
-  if (selectedAmenities.length === 0) {
-    displayHotels(hotels);
-    return;
-  }
+  const selectedStars: Number[] = [];
+  document.querySelectorAll(".star-checkbox:checked").forEach((checkbox) => {
+    selectedStars.push(Number((checkbox as HTMLInputElement).value));
+  });
 
-  const filtered = hotels.filter((hotel) =>
-    selectedAmenities.every((amenity) => 
-      hotel.amenities.some((a) => a.toLowerCase().includes(amenity.toLowerCase()))
-    )
-  );
+  const minPrice = Number((document.getElementById("price-min") as HTMLInputElement).value) || 0;
+  const maxPrice = Number((document.getElementById("price-max") as HTMLInputElement).value) || Infinity;
+
+  const filtered = hotels.filter((hotel) => {
+    const amenityMatch = selectedAmenities.length === 0 ||
+      selectedAmenities.every((amenity) => 
+        hotel.amenities.some((a) => a.toLowerCase().includes(amenity.toLowerCase()))
+      );
+
+  const starMatch = selectedStars.length === 0 || selectedStars.includes(hotel.stars);
+
+  const priceMatch = hotel.pricePerNight >= minPrice && hotel.pricePerNight <= maxPrice;
+   
+  return amenityMatch && starMatch && priceMatch;
+  });
 
   displayHotels(filtered);
 });
@@ -168,9 +178,27 @@ clearBtn?.addEventListener("click", () => {
   checkboxes.forEach((checkbox) => {
     checkbox.checked = false;
   });
-
+  (document.getElementById("price-min") as HTMLInputElement).value = "";
+  (document.getElementById("price-max") as HTMLInputElement).value = "";
   displayHotels(hotels);
 });
 
+const sortSelect = document.querySelector(".sort-control select") as HTMLSelectElement;
+
+sortSelect?.addEventListener("change", () => {
+  const value = sortSelect.value;
+
+  let sortedHotels = [...hotels];
+
+  if (value === "Pris (lav til høy)") {
+    sortedHotels.sort((a, b) => a.pricePerNight - b.pricePerNight);
+  } else if (value === "Pris (høy til lav)") {
+    sortedHotels.sort((a, b) => b.pricePerNight - a.pricePerNight);
+  } else if (value === "Stjerner") {
+    sortedHotels.sort((a, b) => b.stars - a.stars);
+  }
+
+  displayHotels(sortedHotels);
 });
 
+});
