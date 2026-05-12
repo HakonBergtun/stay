@@ -163,7 +163,7 @@ function setupEventListeners(): void {
             await deleteUser(CURRENT_USER_ID);
             localStorage.removeItem("stay_session");
             showMessage("Bruker slettet");
-            window.location.href = "index.html";
+            window.location.href = "signin.html";
         } catch (error) {
             console.error(error);
             showMessage((error as Error).message, true);
