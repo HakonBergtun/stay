@@ -1,6 +1,6 @@
 import { initNavbar } from "./navbar.js";
 
-type Hotel = {
+type Hotel = { // 
     id: number;
     name: string;
     location: string;
@@ -68,7 +68,7 @@ async function saveHotel(hotel: Hotel): Promise<void> {
 // because DELETE requests conventionally do not have a body — the URL describes what to delete.
 async function deleteFacility(hotel: Hotel, facilityToRemove: string): Promise<void> {
     const encoded = encodeURIComponent(facilityToRemove);
-    // encodeURIComponent() makes the facility name safe to put in a URL.
+    // encodeURIComponent() converts special characters in the facility name into URL-friendly format, for example spaces become %20, and characters like ø, æ, å are also encoded so they dont break the URL if not the url would be invalid and the request would fail.
     // For example "Felles kjøkken - Vaskeri" becomes "Felles%20kj%C3%B8kken%20-%20Vaskeri"
     // so special characters like spaces, ø, æ, å and dashes don't break the URL.
 
@@ -362,3 +362,6 @@ async function loadHotel(): Promise<void> {
 
 document.addEventListener("DOMContentLoaded", loadHotel);
 document.addEventListener("DOMContentLoaded", initNavbar);
+//  DOM(document object model) is responsible for rendering/displaying thr HTML elements like text, images, divs, buttons etc on the page, 
+// then it lets us interact with those elements in JS safely after they are loaded,
+//  if not it will crash and we will get errors because JS will try to find elements that are not yet rendered on the page.

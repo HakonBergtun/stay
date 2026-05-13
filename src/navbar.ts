@@ -1,3 +1,6 @@
+//1. page loads, the menu is hidden by default (because the CSS will hide it with the 'active'.
+//2. user clicks hambuger icon -> active class gets added to navLinks -> css shows menu 
+//3. user clicks hamburger menu again -> active class gets removed from navLinks -> css hides menu again>
 
 export function initNavbar() {
 
@@ -6,7 +9,7 @@ export function initNavbar() {
     const navLinks = document.getElementById('nav-links') as HTMLElement | null;
 
     //
-    if (hamburger && navLinks) { //continue if only BOTH elements exists
+    if (hamburger && navLinks) { //continue IF only BOTH elements exists in the html, otherwise log an error
         hamburger.addEventListener('click', () => { //this is saying "watch this element and when someone clicks it do this function"
             navLinks.classList.toggle('active'); //this basically means "if the navLinks element has the class 'active', remove it, otherwise add it", like showing and hiding the menu when the hamburger is clicked.
         });
@@ -15,6 +18,3 @@ export function initNavbar() {
     }
 }
 
-//1. page loads, the menu is hidden by default (because the CSS will hide it when the screen is small).
-//2. user clicks hambuger icon -> active class gets added to navLinks -> css shows menu 
-//3. user clicks hamburger menu again -> active class gets removed from navLinks -> css hides menu again

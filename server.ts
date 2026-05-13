@@ -5,22 +5,21 @@ import express from 'express';
 //"from express" means we are going to get the tool called "express" from the package called express. 
 
 import cors from 'cors';
-//cors = cross origin resource sharing, its a special safety tool that browser uses to protect users from sus websites.
+//cors = cross origin resource sharing, its a special safety tool that browser uses to protect users from dodgy websites.
 //It only allows websites that we trust to access our server.
 
 
 const app = express(); // app is the name of our box, inside is our entire server. 
 //express() - the () means "turn on the tool and get it ready to use", like a switch that turns on the tool.
 
-const PORT = 4000; //this means variable called PORT has the value of 3000, this means we are telling our server to listen for requests on port 3000.
+const PORT = 4000; //this means variable called PORT has the value of 4000, this means we are telling our server to listen for requests on port 4000.
 
 app.use(cors());
 app.use(express.json());
 //app.use() - this line is saying "hey server, before you do anything else, make sure to use these tools first", so we are telling our server to use the cors tool and the express.json tool before it handles any requests.
-//cors() - WITHOUT cors tool other websites get blocked from talking to our server, but with this tool they can talk to our server.
-//express.json() - data sent over the internet comes in a format called JSON,
-//express.json() translates that JSON data that we get from internet into a format the server can understand and work with.
-
+//cors() - WITHOUT cors tool other websites like our frontend would not be able to access our server because of browser security.
+//express.json() - data sent over the internet comes in a format called JSON, like a big string of text that we cannot understand.
+//express.json() translates that JSON data that we get from internet into a format that we and our server can understand and work with.
 const hotels = [
     { id: 1, name: "Grand Hotel Oslo", location: "Karl Johans gate - 0.8 km til sentrum", price: 1490, rooms: "double bed", modern: false, view: "golfbane", available: true, facilities: ["Gratis Wi-Fi", "Frokost", "Gym"], Description: "Grand Hotel Oslo er et ikonisk hotell som ligger i hjertet av Oslo, på den berømte Karl Johans gate. Hotellet tilbyr elegante rom med klassisk innredning og moderne fasiliteter, inkludert gratis Wi-Fi, frokost og et treningsrom. Med sin sentrale beliggenhet og historiske sjarm, er Grand Hotel Oslo et ideelt valg for både forretningsreisende og turister som ønsker å oppleve det beste av Oslo." },
     { id: 2, name: "Thon Hotel Opera", location: "Bjørvika - 1.5km til sentrum", price: 2380, rooms: "single bed", modern: false, view: "utsikt over havet", available: true, facilities: ["Spa", "Pool", "Restaurant"], Description: "Thon Hotel Opera er et moderne hotell som ligger i det pulserende området Bjørvika, bare en kort spasertur fra Oslo sentrum. Hotellet tilbyr komfortable rom med moderne fasiliteter, inkludert gratis Wi-Fi, spa, pool og en restaurant som serverer deilige retter. Med sin sentrale beliggenhet og flotte fasiliteter, er Thon Hotel Opera et ideelt valg for både forretningsreisende og turister som ønsker å utforske Oslo." },
@@ -33,7 +32,7 @@ const hotels = [
 app.get("/api/hotels", (req, res) => {
     res.json(hotels);
 });
-//this a route - its teaching our server if someones asks THIS question, then give them THIS answer.
+//this a route - its teaching our server if someones asks THIS question or request, then give them THIS answer or reponse.
 //app.get() - its when someone asks for something, GET means asking  for something like asking for menu at a restaurant, here we are saying "hey server, can I have the list of hotels?" - this is a GET request.
 //"api/hotels" - this is the what they are asking for,  
 //(req, res) => - this a function that runs when someone asks for "api/hotels", req is the request THEY made, res is the response WE will send back.
@@ -47,7 +46,7 @@ app.get("/api/hotels/:id", (req, res) => {
     res.json(hotel);
 });
 
-// /api/hotels/:id - the :id part is a placeholder or blank space, if someone visits /api/hotels/2, then :id will be replaced with 2 etc.
+// /api/hotels/:id - the :id part is a placeholder or blank space, if someone visits /api/hotels/2, then :id will be replaced with 2 etc and it would look like /api/hotels/2.
 //req.params.id - grab that number from the URL and use it to find the hotel with that id in our hotels array and return it to them.
 //number(...) - URL parameters are always a string or text, but our hotel id are numbers, thats why its important to convert that string into a number so we can compare it with the hotel ids in our array, if not we will get an error because we are comparing a string with a number which will never be equal.
 //hotels.find(...) - this method search through the hotels array and find the hotel that has the same id as the one we got from the URL, if we find it we return that hotel, if not we return a 404 error saying "Hotel not found"
@@ -57,34 +56,38 @@ app.get("/api/hotels/:id", (req, res) => {
 
 // PUT request for updating hotel information, this is for admin only, 
 // but we are not implementing authentication in this example,
-// so anyone can update the hotel information by sending a PUT request to this endpoint with the hotel id and the updated data in the request body.
-app.put("/api/hotels/:id", (req, res) => {
-    const hotelId = Number(req.params.id);
+// so anyone can update the hotel information by sending a PUT request to this endpoint with the hotel id and the updated data in the request body, request body is the new data that we want to update the hotel with like new price, new number of rooms etc.
+app.put("/api/hotels/:id", (req, res) => { //app.put() - PUT method is when we want to update something that already exists, in this case we want to update a hotel by its id, so we use the same :id placeholder in the URL to identify which hotel we want to update.
+//app.put("/api/hotels/:id") - the line is saying if someone sends a PUT request to /api/hotels/2 for example, then we want to update the hotel with id 2.
+    
+    const hotelId = Number(req.params.id); // this line is grabes the ID from the URL and converst it from string to number, so we can use it to find the hotel in our array.
 
-    const hotel = hotels.find(h => h.id === hotelId);
+    const hotel = hotels.find(h => h.id === hotelId); //this line is basically searching through the hotels array to FIND the exact hotel that has the same id as the one we got from the url.
 
     if (!hotel) {
-        return res.status(404).json({ error: "Hotel not found" });
+        return res.status(404).json({ error: "Hotel not found" }); // and if we didnt find it then we return a 404 error saying "Hotel not found" in json format.
     }
 
     // update ONLY allowed fields
-    const { price, rooms, modern, available } = req.body;
+    const { price, rooms, modern, available } = req.body; // this line is saying that we only want to update the price, rooms, modern and availabilty of the hotel.
 
-    if (price !== undefined) hotel.price = price;
-    if (rooms !== undefined) hotel.rooms = rooms;
-    if (modern !== undefined) hotel.modern = modern;
-    if (available !== undefined) hotel.available = available;
+    if (price !== undefined) hotel.price = price; //this means if the price is included in the request body, then update the hotel's price with the new price from the request body, if price is not included in the request body, then we will not update the price and it will stay the same.
+    if (rooms !== undefined) hotel.rooms = rooms; //same thing for rooms, if rooms is included in 
+    if (modern !== undefined) hotel.modern = modern; //same thing for modern, if modern is included in the request body, then update the hotel's modern property with the new value from the request body, if not included then do not update it.
+    if (available !== undefined) hotel.available = available; //same thing for available, if available is included in the request body, then update the hotel's available property with the new value from the request body, if not included then do not update it.
 
-    res.json({
+    res.json({ //after we update the hotel, we send back a response with a message saying "Hotel updated successfully" and the updated hotel data in json format.
         message: "Hotel updated successfully",
         hotel
     });
-});
+}); 
+
+
+
 
 // DELETE - removes a single facility from a hotel by its index in the array.
 // We use the facility name as a query parameter so we know exactly which one to remove.
-app.delete("/api/hotels/:id/facilities", (req, res) => {
-    const hotel = hotels.find(h => h.id === Number(req.params.id));
+app.delete("/api/hotels/:id/facilities", (req, res) => { //app.delete() means 
 
     if (!hotel) {
         return res.status(404).json({ error: "Hotel not found" });
