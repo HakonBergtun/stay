@@ -18,6 +18,8 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("apiKey", data.API_KEY);
         showMessage("Innlogging vellykket! Sender deg videre...", "success");
         setTimeout(() => {
           window.location.href = "index.html";
@@ -38,6 +40,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const div = document.createElement("div");
     div.className = `auth-message ${type}`;
     div.textContent = message;
+
+    document.body.prepend(div);
 
     setTimeout(() => {
         div.classList.add("fade-out");
