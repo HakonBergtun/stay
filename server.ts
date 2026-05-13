@@ -2,11 +2,9 @@
 import express from 'express';
 import cors from 'cors';
 
+const app = express();
 
-
-const app = express(); 
-
-const PORT = 4000; 
+const PORT = 4000;
 
 app.use(cors());
 app.use(express.json());
@@ -34,32 +32,31 @@ app.get("/api/hotels/:id", (req, res) => {
 
 
 
-app.put("/api/hotels/:id", (req, res) => { 
-    
-    const hotelId = Number(req.params.id); 
+app.put("/api/hotels/:id", (req, res) => {
 
-    const hotel = hotels.find(h => h.id === hotelId); 
+    const hotelId = Number(req.params.id);
+
+    const hotel = hotels.find(h => h.id === hotelId);
 
     if (!hotel) {
-        return res.status(404).json({ error: "Hotel not found" }); 
+        return res.status(404).json({ error: "Hotel not found" });
     }
 
-   
-    const { price, rooms, modern, available } = req.body; 
 
-    if (price !== undefined) hotel.price = price; 
-    if (rooms !== undefined) hotel.rooms = rooms; 
+    const { price, rooms, modern, available } = req.body;
+
+    if (price !== undefined) hotel.price = price;
+    if (rooms !== undefined) hotel.rooms = rooms;
     if (modern !== undefined) hotel.modern = modern; .
     if (available !== undefined) hotel.available = available;
 
-    res.json({ 
+    res.json({
         message: "Hotel updated successfully",
         hotel
     });
-}); 
+});
 
-app.delete("/api/hotels/:id/facilities", (req, res) => { //app.delete() means 
-
+app.delete("/api/hotels/:id/facilities", (req, res) => {
     if (!hotel) {
         return res.status(404).json({ error: "Hotel not found" });
     }
@@ -72,19 +69,19 @@ app.delete("/api/hotels/:id/facilities", (req, res) => { //app.delete() means
     }
 
     const index = hotel.facilities.indexOf(facility);
-    
+
 
     if (index === -1) {
         return res.status(404).json({ error: "Facility not found" });
     }
 
     hotel.facilities.splice(index, 1);
-    
+
 
     res.json({
         message: "Facility deleted successfully",
         facilities: hotel.facilities
-       
+
     });
 });
 
