@@ -43,15 +43,11 @@ function saveHotel(hotel) {
         renderDetails(hotel);
     });
 }
-// DELETE - sends a DELETE request to remove one facility from this hotel.
-// We pass the facility name as a query parameter in the URL instead of the request body,
-// because DELETE requests conventionally do not have a body — the URL describes what to delete.
+
 function deleteFacility(hotel, facilityToRemove) {
     return __awaiter(this, void 0, void 0, function* () {
         const encoded = encodeURIComponent(facilityToRemove);
-        // encodeURIComponent() makes the facility name safe to put in a URL.
-        // For example "Felles kjøkken - Vaskeri" becomes "Felles%20kj%C3%B8kken%20-%20Vaskeri"
-        // so special characters like spaces, ø, æ, å and dashes don't break the URL.
+    
         const response = yield fetch(`http://localhost:4000/api/hotels/${hotel.id}/facilities?facility=${encoded}`, { method: "DELETE" });
         if (!response.ok) {
             alert("Kunne ikke slette fasiliteten. Prøv igjen.");
@@ -59,22 +55,19 @@ function deleteFacility(hotel, facilityToRemove) {
         }
         const data = yield response.json();
         hotel.facilities = data.facilities;
-        // We update the local hotel object with the confirmed facilities array the server sent back,
-        // rather than filtering locally — this ensures the frontend always matches the server state.
+     
         renderFacilities(hotel);
     });
 }
-// POST - sends a new review for this hotel to the server.
+
 function postReview(hotelId) {
     return __awaiter(this, void 0, void 0, function* () {
         const authorInput = document.getElementById('review-author');
         const textInput = document.getElementById('review-text');
-        // HTMLTextAreaElement is the correct TypeScript type for <textarea>,
-        // just like HTMLInputElement is for <input> — both have .value but are different element types.
+        
         const author = authorInput.value.trim();
         const text = textInput.value.trim();
-        // .trim() removes accidental whitespace from both ends so a review
-        // that is just spaces does not pass the validation check below.
+       
         if (!author || !text) {
             alert("Vennligst fyll inn både navn og anmeldelse.");
             return;
@@ -84,7 +77,7 @@ function postReview(hotelId) {
             author,
             text,
             date: new Date().toLocaleDateString('nb-NO'),
-            // toLocaleDateString('nb-NO') formats the date in Norwegian style: dd.mm.åååå
+          
         };
         const response = yield fetch(`http://localhost:4000/api/reviews`, {
             method: "POST",
@@ -98,19 +91,18 @@ function postReview(hotelId) {
         const data = yield response.json();
         authorInput.value = '';
         textInput.value = '';
-        // Clear the fields after a successful submission so the form feels fresh.
+      
         prependReview(data.review);
-        // Add the new review to the top of the list immediately without re-fetching.
+        
     });
 }
-// Adds a single review card to the TOP of the reviews list.
+
 function prependReview(review) {
     const reviewsList = document.getElementById('reviews-list');
     if (!reviewsList)
         return;
     const li = document.createElement('li');
-    // We create the <li> in JavaScript instead of using innerHTML +=
-    // because += re-renders the entire list and wipes all existing event listeners.
+  
     li.className = 'review-item';
     li.innerHTML = `
         <div class="review-header">
@@ -120,9 +112,9 @@ function prependReview(review) {
         <p class="review-text">${review.text}</p>
     `;
     reviewsList.prepend(li);
-    // .prepend() inserts at the TOP so the most recent review is always first.
+   
 }
-// Fetches all existing reviews for this hotel and renders them on page load.
+
 function loadReviews(hotelId) {
     return __awaiter(this, void 0, void 0, function* () {
         const response = yield fetch(`http://localhost:4000/api/reviews/${hotelId}`);
@@ -132,8 +124,7 @@ function loadReviews(hotelId) {
         }
         const reviews = yield response.json();
         reviews.forEach(review => prependReview(review));
-        // We reuse prependReview() for each one so every card gets the same
-        // layout without duplicating the HTML template.
+        
     });
 }
 function renderDetails(hotel) {
