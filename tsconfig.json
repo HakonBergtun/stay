@@ -1,15 +1,5 @@
 {
   "compilerOptions": {
-<<<<<<< HEAD
-    "target": "ES6",
-    "module": "ES6",
-    "rootDir": "./src",
-    "outDir": "./dist",
-    "strict": true
-  },
-  "include": ["src"]
-}
-=======
     "target": "ES2022",
     "useDefineForClassFields": true,
     "module": "ESNext",
@@ -22,4 +12,4 @@
   },
   "include": ["JS/**/*.ts"]
 }
->>>>>>> 08388a80b31ce329f62f9303918b6c397fdba70e
+
