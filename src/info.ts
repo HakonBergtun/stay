@@ -1,3 +1,4 @@
+//SHAIMA NAZAND 
 import { initNavbar } from "./navbar.js";
 
 type Hotel = { // 
@@ -20,11 +21,10 @@ type Review = {
     text: string;
     date: string;
 }
-    //GET - function that fetches the hotel ID from the page the user is on and sends a request to the server to get all the details about that hotel, which it then renders/displays on the page.
-    //this function is saying "look at the URL, find the id number and return it. To return means either give back value or end the function and exit. If there is no id in the URL, return null."
+    
 function getHotelId(): string | null {
-    const params = new URLSearchParams(window.location.search); //window.location is URL of the current page. search is what comes after the ? in the URL. ?id=2 is called a query parameter.URLSearchParams makes it easy to read query parameters for the current page.
-    return params.get('id'); //params.get("id") grabs the ?id=2 part of URL, depending on the page, it could be 1, 2 ,3 etc, if no id returns null
+    const params = new URLSearchParams(window.location.search); 
+    return params.get('id'); 
 }
 
 let isEditing = false;
@@ -63,14 +63,9 @@ async function saveHotel(hotel: Hotel): Promise<void> {
     renderDetails(hotel);
 }
 
-// DELETE - sends a DELETE request to remove one facility from this hotel.
-// We pass the facility name as a query parameter in the URL instead of the request body,
-// because DELETE requests conventionally do not have a body — the URL describes what to delete.
 async function deleteFacility(hotel: Hotel, facilityToRemove: string): Promise<void> {
     const encoded = encodeURIComponent(facilityToRemove);
-    // encodeURIComponent() converts special characters in the facility name into URL-friendly format, for example spaces become %20, and characters like ø, æ, å are also encoded so they dont break the URL if not the url would be invalid and the request would fail.
-    // For example "Felles kjøkken - Vaskeri" becomes "Felles%20kj%C3%B8kken%20-%20Vaskeri"
-    // so special characters like spaces, ø, æ, å and dashes don't break the URL.
+    
 
     const response = await fetch(
         `http://localhost:4000/api/hotels/${hotel.id}/facilities?facility=${encoded}`,
@@ -84,23 +79,20 @@ async function deleteFacility(hotel: Hotel, facilityToRemove: string): Promise<v
 
     const data = await response.json();
     hotel.facilities = data.facilities;
-    // We update the local hotel object with the confirmed facilities array the server sent back,
-    // rather than filtering locally — this ensures the frontend always matches the server state.
+    
 
     renderFacilities(hotel);
 }
 
-// POST - sends a new review for this hotel to the server.
+
 async function postReview(hotelId: number): Promise<void> {
     const authorInput = document.getElementById('review-author') as HTMLInputElement;
     const textInput = document.getElementById('review-text') as HTMLTextAreaElement;
-    // HTMLTextAreaElement is the correct TypeScript type for <textarea>,
-    // just like HTMLInputElement is for <input> — both have .value but are different element types.
+    
 
     const author = authorInput.value.trim();
     const text = textInput.value.trim();
-    // .trim() removes accidental whitespace from both ends so a review
-    // that is just spaces does not pass the validation check below.
+   
 
     if (!author || !text) {
         alert("Vennligst fyll inn både navn og anmeldelse.");
@@ -112,7 +104,7 @@ async function postReview(hotelId: number): Promise<void> {
         author,
         text,
         date: new Date().toLocaleDateString('nb-NO'),
-        // toLocaleDateString('nb-NO') formats the date in Norwegian style: dd.mm.åååå
+       
     };
 
     const response = await fetch(`http://localhost:4000/api/reviews`, {
@@ -130,20 +122,19 @@ async function postReview(hotelId: number): Promise<void> {
 
     authorInput.value = '';
     textInput.value = '';
-    // Clear the fields after a successful submission so the form feels fresh.
+    
 
     prependReview(data.review);
-    // Add the new review to the top of the list immediately without re-fetching.
+    
 }
 
-// Adds a single review card to the TOP of the reviews list.
+
 function prependReview(review: Review): void {
     const reviewsList = document.getElementById('reviews-list');
     if (!reviewsList) return;
 
     const li = document.createElement('li');
-    // We create the <li> in JavaScript instead of using innerHTML +=
-    // because += re-renders the entire list and wipes all existing event listeners.
+    
     li.className = 'review-item';
     li.innerHTML = `
         <div class="review-header">
@@ -154,10 +145,10 @@ function prependReview(review: Review): void {
     `;
 
     reviewsList.prepend(li);
-    // .prepend() inserts at the TOP so the most recent review is always first.
+   
 }
 
-// Fetches all existing reviews for this hotel and renders them on page load.
+
 async function loadReviews(hotelId: number): Promise<void> {
     const response = await fetch(`http://localhost:4000/api/reviews/${hotelId}`);
 
@@ -168,8 +159,7 @@ async function loadReviews(hotelId: number): Promise<void> {
 
     const reviews: Review[] = await response.json();
     reviews.forEach(review => prependReview(review));
-    // We reuse prependReview() for each one so every card gets the same
-    // layout without duplicating the HTML template.
+    
 }
 
 function renderDetails(hotel: Hotel): void {
@@ -362,6 +352,3 @@ async function loadHotel(): Promise<void> {
 
 document.addEventListener("DOMContentLoaded", loadHotel);
 document.addEventListener("DOMContentLoaded", initNavbar);
-//  DOM(document object model) is responsible for rendering/displaying thr HTML elements like text, images, divs, buttons etc on the page, 
-// then it lets us interact with those elements in JS safely after they are loaded,
-//  if not it will crash and we will get errors because JS will try to find elements that are not yet rendered on the page.

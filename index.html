@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,3 +13,154 @@
     <script type="module" src="./dist/main.js"></script>
 </body>
 </html>
+=======
+<html lang="nb">
+<head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel List – Stay Bed & Breakfast</title>
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/global.css">
+</head>
+<body>
+
+<header class="header">
+  <nav class="navbar">
+      <a href="index.html" class="logo">
+        <img src="/assets/logo.png" alt="Stay logo" />
+      </a>
+
+          <div class="hamburger" id="hamburger">
+        <img src="assets/menu.png" alt="meny" />
+      </div>
+
+  
+      <nav class="nav-links" id="nav-links">
+        <a href="index.html">Hjem</a>
+        <a href="kontaktoss.html">Kontakt Oss</a>
+        <a href="FAQ.html">FAQ</a>
+        <a href="omoss.html">Om Oss</a>
+      </nav>
+
+
+    <ul class="menu" id="auth-menu">
+      <li><a href="register.html">Registrer</a></li>
+      <li><a href="signin.html">Logg inn</a></li>
+    </ul>
+    <a href="profile.html" class="user-icon">
+      <img src="assets/icon.png" alt="Profil" />
+    </a>
+
+    
+  </nav>
+<section class="searchbar" aria-label="Hotel Search">
+    <form class="search-form" aria-label="Search Hotels">
+      <label>
+        Destinasjon
+        <input type="text" id="destination-input" placeholder="Velg Destinasjon!">
+      </label>
+      <label>
+        Check-in
+        <input type="date" id="check-in">
+      </label>
+      <label>
+        Check-out
+        <input type="date" id="check-out">
+      </label>
+      <label id="guest-label">
+        Gjester
+        <input type="text" id="guest-input" placeholder="1 voksen, 0 barn" readonly>
+      </label>
+      <button type="submit">Søk</button>
+    </form>
+
+    <div class="guest-dropdown" id="guest-dropdown">
+      <div class="guest-row">
+        <span>Voksne</span>
+        <div class="guest-controls">
+          <button type="button" class="guest-btn" id="adults-minus">-</button>
+          <span id="adults-count">2</span>
+          <button type="button" class="guest-btn" id="adults-plus">+</button>
+        </div>
+      </div>
+      <div class="guest-row">
+        <span>Barn</span>
+        <div class="guest-controls">
+          <button type="button" class="guest-btn" id="child-minus">-</button>
+          <span id="child-count">0</span>
+          <button type="button" class="guest-btn" id="child-plus">+</button>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</header>
+
+<main class="main">
+  <aside class="filters" aria-label="Filter hotels">
+    <h2>Filter</h2>
+
+    <h3>Pris per natt (NOK)</h3>
+    <div class="price-inputs">
+      <label>
+        Min
+        <input type="number" id="price-min" placeholder="500" min="0">
+      </label>
+      <label>
+        Max
+        <input type="number" id="price-max" placeholder="5000" min="0">
+      </label>
+    </div>
+
+    <h3>Stjernevurdering</h3>
+    <label><input type="checkbox" class="star-checkbox" value="5"> ★★★★★ 5 stjerner</label>
+    <label><input type="checkbox" class="star-checkbox" value="4"> ★★★★☆ 4 stjerner</label>
+    <label><input type="checkbox" class="star-checkbox" value="3"> ★★★☆☆ 3 stjerner</label>
+    <label><input type="checkbox" class="star-checkbox" value="2"> ★★☆☆☆ 2 stjerner</label>
+    <label><input type="checkbox" class="star-checkbox" value="1"> ★☆☆☆☆ 1 stjerner</label>
+
+    <h3>Fasiliteter</h3>
+    <label><input type="checkbox"> Gratis Wi-Fi</label>
+    <label><input type="checkbox"> Frokost inkludert</label>
+    <label><input type="checkbox"> Badebasseng</label>
+    <label><input type="checkbox"> Gym</label>
+    <label><input type="checkbox"> Spa</label>
+    <label><input type="checkbox"> Parkering</label>
+
+    <div class="filter-actions">
+      <button class="btn-apply" type="button">Apply filters</button>
+      <button class="btn-clear" type="button">Clear</button>
+    </div>
+  </aside>
+
+  <section class="results" aria-label="Hotel results">
+    <div class="results-header">
+      <div>
+        <h1>Hoteller</h1>
+      </div>
+      <div class="sort-control">
+        Sorter etter:
+        <select>
+          <option>Anbefalt</option>
+          <option>Pris (lav til høy)</option>
+          <option>Pris (høy til lav)</option>
+          <option>Stjerner</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="hotel-list">
+    </div>
+  </section>
+
+</main> 
+
+<footer class="footer">
+  <p>© 2026 Stay Bed & Breakfast</p>
+</footer>
+
+<script type="module" src="JS/navbar.ts"></script>
+<script type="module" src="JS/index.ts"></script>
+</body>
+</html>
+>>>>>>> 08388a80b31ce329f62f9303918b6c397fdba70e

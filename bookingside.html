@@ -1,8 +1,10 @@
-<!doctype html<html lang="nb">
+<!doctype html>
+<html lang="nb">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Booking</title>
+    <script type="module" src="/JS/bookingside.ts"></script>
     <link rel="stylesheet" href="CSS/global.css" />
     <link rel="stylesheet" href="CSS/bookingside.css" />
   </head>
@@ -18,12 +20,6 @@
 
       <nav class="nav-links" id="nav-links">
         <a href="index.html">Hjem</a>
-        <a href="Hotellist.html">Hotell</a>
-        <a href="infoside.html">Info</a>
-        <a href="bookingside.html">Booking</a>
-        <a href="profile.html">Profil</a>
-        <a href="register.html">Registrer</a>
-        <a href="signin.html">Logg inn</a>
         <a href="kontaktoss.html">Kontakt Oss</a>
         <a href="FAQ.html">FAQ</a>
         <a href="omoss.html">Om Oss</a>
@@ -61,7 +57,9 @@
             <label for="message">Melding</label>
             <textarea id="message" name="message" rows="4"></textarea>
 
-            <button class="btn" type="submit" id="createBookingBtn">Bestill nå</button>
+            <button class="btn" type="submit" id="createBookingBtn">
+              Bestill nå
+            </button>
           </form>
         </article>
 
@@ -75,6 +73,27 @@
 
         <div id="bookingsList"></div>
         <p id="emptyState" hidden>Ingen bookinger enda.</p>
+      </section>
+      <section class="edit-booking-section" id="editBookingSection" hidden>
+        <h2>Rediger booking</h2>
+
+        <form id="editBookingForm" class="booking-form">
+          <input type="hidden" id="editBookingId" />
+
+          <label for="editFromDate">Fra dato</label>
+          <input type="date" id="editFromDate" required />
+
+          <label for="editToDate">Til dato</label>
+          <input type="date" id="editToDate" required />
+
+          <label for="editMessage">Melding</label>
+          <textarea id="editMessage" rows="4"></textarea>
+
+          <div class="booking-actions">
+            <button type="submit">Lagre endringer</button>
+            <button type="button" id="cancelEditBtn">Avbryt</button>
+          </div>
+        </form>
       </section>
     </main>
 
