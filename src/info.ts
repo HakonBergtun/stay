@@ -21,10 +21,10 @@ type Review = {
     text: string;
     date: string;
 }
-    
-function getHotelId(): string | null {
-    const params = new URLSearchParams(window.location.search); 
-    return params.get('id'); 
+
+function getHotelId(): string {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("id") ?? "1";
 }
 
 let isEditing = false;
@@ -65,7 +65,7 @@ async function saveHotel(hotel: Hotel): Promise<void> {
 
 async function deleteFacility(hotel: Hotel, facilityToRemove: string): Promise<void> {
     const encoded = encodeURIComponent(facilityToRemove);
-    
+
 
     const response = await fetch(
         `http://localhost:4000/api/hotels/${hotel.id}/facilities?facility=${encoded}`,
@@ -79,7 +79,7 @@ async function deleteFacility(hotel: Hotel, facilityToRemove: string): Promise<v
 
     const data = await response.json();
     hotel.facilities = data.facilities;
-    
+
 
     renderFacilities(hotel);
 }
@@ -88,11 +88,11 @@ async function deleteFacility(hotel: Hotel, facilityToRemove: string): Promise<v
 async function postReview(hotelId: number): Promise<void> {
     const authorInput = document.getElementById('review-author') as HTMLInputElement;
     const textInput = document.getElementById('review-text') as HTMLTextAreaElement;
-    
+
 
     const author = authorInput.value.trim();
     const text = textInput.value.trim();
-   
+
 
     if (!author || !text) {
         alert("Vennligst fyll inn både navn og anmeldelse.");
@@ -104,7 +104,7 @@ async function postReview(hotelId: number): Promise<void> {
         author,
         text,
         date: new Date().toLocaleDateString('nb-NO'),
-       
+
     };
 
     const response = await fetch(`http://localhost:4000/api/reviews`, {
@@ -122,10 +122,10 @@ async function postReview(hotelId: number): Promise<void> {
 
     authorInput.value = '';
     textInput.value = '';
-    
+
 
     prependReview(data.review);
-    
+
 }
 
 
@@ -134,7 +134,7 @@ function prependReview(review: Review): void {
     if (!reviewsList) return;
 
     const li = document.createElement('li');
-    
+
     li.className = 'review-item';
     li.innerHTML = `
         <div class="review-header">
@@ -145,7 +145,7 @@ function prependReview(review: Review): void {
     `;
 
     reviewsList.prepend(li);
-   
+
 }
 
 
@@ -159,7 +159,7 @@ async function loadReviews(hotelId: number): Promise<void> {
 
     const reviews: Review[] = await response.json();
     reviews.forEach(review => prependReview(review));
-    
+
 }
 
 function renderDetails(hotel: Hotel): void {
