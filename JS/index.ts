@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <p class="price"><strong>${hotel.pricePerNight} NOK</strong></p>
                 <p class="price-label">per natt</p>
               </div>
-              <a href="${hotel.href}">View deal</a>
+              <a href="infoside.html?id=${hotel.id}">View deal</a>
             </div>
           </div>
         </article>
@@ -88,9 +88,9 @@ document.addEventListener("DOMContentLoaded", () => {
   let adults = 2;
   let children = 0;
 
-function updateGuestInput() {
-  guestInput.value = `${adults} voksne, ${children} barn`;
-}
+  function updateGuestInput() {
+    guestInput.value = `${adults} voksne, ${children} barn`;
+  }
 
   guestLabel.addEventListener("click", (e) => {
     e.stopPropagation();
@@ -103,7 +103,7 @@ function updateGuestInput() {
 
   document.addEventListener("click", (e) => {
     if (!guestInput.contains(e.target as Node) &&
-    !guestDropdown?.contains(e.target as Node)) {
+      !guestDropdown?.contains(e.target as Node)) {
       guestDropdown?.classList.remove("open");
     }
   });
@@ -145,60 +145,60 @@ function updateGuestInput() {
 
     const selectedAmenities: string[] = [];
     checkboxes.forEach((checkbox) => {
-    if (checkbox.checked && !checkbox.classList.contains("star-checkbox")) {
-      selectedAmenities.push(checkbox.parentElement?.textContent?.trim() ?? "");
+      if (checkbox.checked && !checkbox.classList.contains("star-checkbox")) {
+        selectedAmenities.push(checkbox.parentElement?.textContent?.trim() ?? "");
+      }
+    });
+
+    const selectedStars: Number[] = [];
+    document.querySelectorAll(".star-checkbox:checked").forEach((checkbox) => {
+      selectedStars.push(Number((checkbox as HTMLInputElement).value));
+    });
+
+    const minPrice = Number((document.getElementById("price-min") as HTMLInputElement).value) || 0;
+    const maxPrice = Number((document.getElementById("price-max") as HTMLInputElement).value) || Infinity;
+
+    const filtered = hotels.filter((hotel) => {
+      const amenityMatch = selectedAmenities.length === 0 ||
+        selectedAmenities.every((amenity) =>
+          hotel.amenities.some((a) => a.toLowerCase().includes(amenity.toLowerCase()))
+        );
+
+      const starMatch = selectedStars.length === 0 || selectedStars.includes(hotel.stars);
+
+      const priceMatch = hotel.pricePerNight >= minPrice && hotel.pricePerNight <= maxPrice;
+
+      return amenityMatch && starMatch && priceMatch;
+    });
+
+    displayHotels(filtered);
+  });
+
+  clearBtn?.addEventListener("click", () => {
+    checkboxes.forEach((checkbox) => {
+      checkbox.checked = false;
+    });
+    (document.getElementById("price-min") as HTMLInputElement).value = "";
+    (document.getElementById("price-max") as HTMLInputElement).value = "";
+    displayHotels(hotels);
+  });
+
+  const sortSelect = document.querySelector(".sort-control select") as HTMLSelectElement;
+
+  sortSelect?.addEventListener("change", () => {
+    const value = sortSelect.value;
+
+    let sortedHotels = [...hotels];
+
+    if (value === "Pris (lav til høy)") {
+      sortedHotels.sort((a, b) => a.pricePerNight - b.pricePerNight);
+    } else if (value === "Pris (høy til lav)") {
+      sortedHotels.sort((a, b) => b.pricePerNight - a.pricePerNight);
+    } else if (value === "Stjerner") {
+      sortedHotels.sort((a, b) => b.stars - a.stars);
     }
+
+    displayHotels(sortedHotels);
   });
-
-  const selectedStars: Number[] = [];
-  document.querySelectorAll(".star-checkbox:checked").forEach((checkbox) => {
-    selectedStars.push(Number((checkbox as HTMLInputElement).value));
-  });
-
-  const minPrice = Number((document.getElementById("price-min") as HTMLInputElement).value) || 0;
-  const maxPrice = Number((document.getElementById("price-max") as HTMLInputElement).value) || Infinity;
-
-  const filtered = hotels.filter((hotel) => {
-    const amenityMatch = selectedAmenities.length === 0 ||
-      selectedAmenities.every((amenity) => 
-        hotel.amenities.some((a) => a.toLowerCase().includes(amenity.toLowerCase()))
-      );
-
-  const starMatch = selectedStars.length === 0 || selectedStars.includes(hotel.stars);
-
-  const priceMatch = hotel.pricePerNight >= minPrice && hotel.pricePerNight <= maxPrice;
-   
-  return amenityMatch && starMatch && priceMatch;
-  });
-
-  displayHotels(filtered);
-});
-
-clearBtn?.addEventListener("click", () => {
-  checkboxes.forEach((checkbox) => {
-    checkbox.checked = false;
-  });
-  (document.getElementById("price-min") as HTMLInputElement).value = "";
-  (document.getElementById("price-max") as HTMLInputElement).value = "";
-  displayHotels(hotels);
-});
-
-const sortSelect = document.querySelector(".sort-control select") as HTMLSelectElement;
-
-sortSelect?.addEventListener("change", () => {
-  const value = sortSelect.value;
-
-  let sortedHotels = [...hotels];
-
-  if (value === "Pris (lav til høy)") {
-    sortedHotels.sort((a, b) => a.pricePerNight - b.pricePerNight);
-  } else if (value === "Pris (høy til lav)") {
-    sortedHotels.sort((a, b) => b.pricePerNight - a.pricePerNight);
-  } else if (value === "Stjerner") {
-    sortedHotels.sort((a, b) => b.stars - a.stars);
-  }
-
-  displayHotels(sortedHotels);
-});
 
 });
