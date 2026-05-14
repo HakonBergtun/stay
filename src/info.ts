@@ -1,7 +1,7 @@
 //SHAIMA NAZAND 
 import { initNavbar } from "./navbar.js";
 
-type Hotel = { // 
+type Hotel = { 
     id: number;
     name: string;
     location: string;

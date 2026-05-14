@@ -29,9 +29,6 @@ app.get("/api/hotels/:id", (req, res) => {
     res.json(hotel);
 });
 
-
-
-
 app.put("/api/hotels/:id", (req, res) => {
 
     const hotelId = Number(req.params.id);
@@ -45,9 +42,9 @@ app.put("/api/hotels/:id", (req, res) => {
 
     const { price, rooms, modern, available } = req.body;
 
-    if (price !== undefined) hotel.price = price;
     if (rooms !== undefined) hotel.rooms = rooms;
-    if (modern !== undefined) hotel.modern = modern; 
+    if (price !== undefined) hotel.price = price;
+    if (modern !== undefined) hotel.modern = modern;
     if (available !== undefined) hotel.available = available;
 
     res.json({
@@ -58,6 +55,8 @@ app.put("/api/hotels/:id", (req, res) => {
 
 app.delete("/api/hotels/:id/facilities", (req, res) => {
     const hotelId = Number(req.params.id);
+
+
     const hotel = hotels.find(h => h.id === hotelId);
 
     if (!hotel) {
