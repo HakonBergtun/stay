@@ -47,7 +47,7 @@ app.put("/api/hotels/:id", (req, res) => {
 
     if (price !== undefined) hotel.price = price;
     if (rooms !== undefined) hotel.rooms = rooms;
-    if (modern !== undefined) hotel.modern = modern; .
+    if (modern !== undefined) hotel.modern = modern;
     if (available !== undefined) hotel.available = available;
 
     res.json({
@@ -57,6 +57,10 @@ app.put("/api/hotels/:id", (req, res) => {
 });
 
 app.delete("/api/hotels/:id/facilities", (req, res) => {
+    const hotelId = Number(req.params.id);
+
+    const hotel = hotels.find(h => h.id === hotelId);
+
     if (!hotel) {
         return res.status(404).json({ error: "Hotel not found" });
     }
