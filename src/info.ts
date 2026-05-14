@@ -12,6 +12,8 @@ type Hotel = {
     available: boolean;
     facilities: string[];
     Description: string;
+    stars: number;
+    image: string;
 }
 
 type Review = {
@@ -58,6 +60,7 @@ async function saveHotel(hotel: Hotel): Promise<void> {
     hotel.rooms = data.hotel.rooms;
     hotel.modern = data.hotel.modern;
     hotel.available = data.hotel.available;
+    hotel.stars = data.hotel.stars;
 
     isEditing = false;
     renderDetails(hotel);
@@ -179,6 +182,12 @@ function renderDetails(hotel: Hotel): void {
                     <label for="input-rooms"><strong>Romtype:</strong></label>
                     <input id="input-rooms" type="text" value="${hotel.rooms}" class="edit-input" />
                 </p>
+                
+                <p>
+                    <label for="input-stars"><strong>Stjerner:</strong></label>
+                 <input id="input-stars" type="number" min="1" max="5" value="${hotel.stars}" class="edit-input" />
+                </p>
+
                 <p>
                     <label for="input-available"><strong>Tilgjengelighet:</strong></label>
                     <input id="input-available" type="checkbox" ${hotel.available ? 'checked' : ''} class="edit-checkbox" />
@@ -189,6 +198,8 @@ function renderDetails(hotel: Hotel): void {
                     <input id="input-modern" type="checkbox" ${hotel.modern ? 'checked' : ''} class="edit-checkbox" />
                     Nye og moderne møbler
                 </p>
+
+                
             </div>
             <div class="btn-group">
                 <button class="btn" id="save-btn" aria-label="Lagre endringer">Lagre</button>
@@ -212,6 +223,7 @@ function renderDetails(hotel: Hotel): void {
                 <p><strong>Tilgjengelighet:</strong> ${hotel.available ? 'Ledig rom' : 'Ikke tilgjengelig'}</p>
                 <p><strong>Modern:</strong> ${hotel.modern ? 'Nye og moderne møbler' : 'Standard møbler'}</p>
                 <p><strong>Utsikt:</strong> ${hotel.view}</p>
+                <p></p><strong>Stjerner:</strong> ${"★".repeat(hotel.stars) + "☆".repeat(5 - hotel.stars)}</p>
             </div>
         `;
 
@@ -285,7 +297,7 @@ async function loadHotel(): Promise<void> {
                 </article>
 
                 <figure class="hero-image">
-                    <img src="/assets/image01.png" alt="Moderne hotellbygning" />
+                    <img src="${hotel.image}" alt="${hotel.name}" />
                 </figure>
             </section>
 
