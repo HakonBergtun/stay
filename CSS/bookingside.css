@@ -1,5 +1,5 @@
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background: var(--background);
   color: var(--text);
   line-height: 1.6;
@@ -15,7 +15,7 @@ body {
 
 h1,
 h2 {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
 }
 
 h1 {
@@ -82,7 +82,7 @@ h2 {
   border: 1px solid var(--secondary);
   border-radius: 14px;
   font-size: 1rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   margin-top: 0.3rem;
   width: 100%;
   background: #fff;
@@ -98,7 +98,7 @@ h2 {
   border: 2px solid transparent;
   background-color: var(--primary);
   color: white;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1.1rem;
   border-radius: 1.5rem;
   cursor: pointer;
@@ -128,7 +128,7 @@ h2 {
 }
 
 .booking-card h3 {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   margin-bottom: 0.5rem;
 }
 
@@ -149,7 +149,7 @@ h2 {
   border: 2px solid transparent;
   background-color: var(--primary);
   color: white;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 1rem;
   border-radius: 1.5rem;
   cursor: pointer;
