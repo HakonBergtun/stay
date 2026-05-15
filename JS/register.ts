@@ -1,3 +1,4 @@
+// Sander Marinius de Graaf Bendal
 document.addEventListener("DOMContentLoaded", () => {
 
     const form = document.querySelector(".auth-form") as HTMLFormElement;

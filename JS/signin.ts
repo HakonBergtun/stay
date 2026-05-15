@@ -1,3 +1,4 @@
+// Sander Marinius de Graaf Bendal
 import { loginUser } from "./api";
 
 document.addEventListener("DOMContentLoaded", () => {

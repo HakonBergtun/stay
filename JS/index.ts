@@ -1,3 +1,4 @@
+// Sander Marinius de Graaf Bendal
 type Hotel = {
   id: number;
   name: string;
