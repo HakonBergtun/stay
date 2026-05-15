@@ -1,41 +1,20 @@
-document.addEventListener("DOMContentLoaded", () => {
+type Hotel = {
+  id: number;
+  name: string;
+  location: string;
+  stars: number;
+  price: number;
+  facilities: string[];
+  image: string;
+};
 
-  const hotels = [
-    {
-      id: 1,
-      name: "Hotel Oslo",
-      location: "Oslo",
-      stars: 4,
-      pricePerNight: 1200,
-      amenities: ["Gratis Wi-Fi", "Breakfast", "Gym"],
-      image: "./assets/index/hoteloslo.jpeg",
-      href: "infoside.html"
-    },
-    {
-      id: 2,
-      name: "Bergen Opera Hotel",
-      location: "Bergen",
-      stars: 5,
-      pricePerNight: 2380,
-      amenities: ["Spa", "Badebasseng", "Restaurant"],
-      image: "./assets/index/hotelbergen.jpg",
-      href: "infoside.html"
-    },
-    {
-      id: 3,
-      name: "Hotel Trondheim Sjøsiden",
-      location: "Trondheim",
-      stars: 4,
-      pricePerNight: 940,
-      amenities: ["Gratis Wi-Fi", "Frokost", "Gym"],
-      image: "./assets/index/hoteltrondheim.jpg",
-      href: "infoside.html"
-    },
-  ];
+document.addEventListener("DOMContentLoaded", async () => {
+  const response = await fetch("http://localhost:4000/api/hotels");
+  const hotels: Hotel[] = await response.json();
 
   const hotelList = document.querySelector(".hotel-list");
 
-  function displayHotels(filtered: typeof hotels) {
+  function displayHotels(filtered: Hotel[]) {
     if (!hotelList) return;
 
     hotelList.innerHTML = "";
@@ -50,10 +29,10 @@ document.addEventListener("DOMContentLoaded", () => {
             <h2>${hotel.name}</h2>
             <p>${stars}</p>
             <p>${hotel.location}</p>
-            <p>${hotel.amenities.join(" · ")}</p>
+            <p>${hotel.facilities.join(" · ")}</p>
             <div class="hotel-price">
               <div>
-                <p class="price"><strong>${hotel.pricePerNight} NOK</strong></p>
+                <p class="price"><strong>${hotel.price} NOK</strong></p>
                 <p class="price-label">per natt</p>
               </div>
               <a href="infoside.html?id=${hotel.id}">View deal</a>
@@ -161,12 +140,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const filtered = hotels.filter((hotel) => {
       const amenityMatch = selectedAmenities.length === 0 ||
         selectedAmenities.every((amenity) =>
-          hotel.amenities.some((a) => a.toLowerCase().includes(amenity.toLowerCase()))
+          hotel.facilities.some((a) => a.toLowerCase().includes(amenity.toLowerCase()))
         );
 
       const starMatch = selectedStars.length === 0 || selectedStars.includes(hotel.stars);
 
-      const priceMatch = hotel.pricePerNight >= minPrice && hotel.pricePerNight <= maxPrice;
+      const priceMatch = hotel.price >= minPrice && hotel.price <= maxPrice;
 
       return amenityMatch && starMatch && priceMatch;
     });
@@ -191,9 +170,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let sortedHotels = [...hotels];
 
     if (value === "Pris (lav til høy)") {
-      sortedHotels.sort((a, b) => a.pricePerNight - b.pricePerNight);
+      sortedHotels.sort((a, b) => a.price - b.price);
     } else if (value === "Pris (høy til lav)") {
-      sortedHotels.sort((a, b) => b.pricePerNight - a.pricePerNight);
+      sortedHotels.sort((a, b) => b.price - a.price);
     } else if (value === "Stjerner") {
       sortedHotels.sort((a, b) => b.stars - a.stars);
     }
