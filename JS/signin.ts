@@ -1,35 +1,24 @@
-document.addEventListener("DOMContentLoaded", () => {
+import { loginUser } from "./api";
 
+document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector(".auth-form") as HTMLFormElement;
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const email = (document.getElementById("email") as HTMLInputElement).value;
+    const email = (document.getElementById("email") as HTMLInputElement).value.trim();
     const password = (document.getElementById("password") as HTMLInputElement).value;
 
     try {
-      const response = await fetch("http://localhost:3000/api/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email, password })
-      });
+      const user = await loginUser(email, password);
 
-      if (response.ok) {
-        const data = await response.json();
-        localStorage.setItem("apiKey", data.API_KEY);
-        showMessage("Innlogging vellykket! Sender deg videre...", "success");
-        setTimeout(() => {
-          window.location.href = "index.html";
-        }, 1500);
-      } else {
-        showMessage("Feil e-post eller passord. Prøv igjen!", "error");
-      }
+      showMessage(`Velkommen, ${user.userName}!`, "success");
 
+      setTimeout(() => {
+        window.location.href = "profile.html";
+      }, 1000);
     } catch (error) {
-      showMessage("Kunne ikke koble til serveren. Er APIet kjørende?", "error");
+      showMessage((error as Error).message, "error");
     }
   });
 
@@ -44,9 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.prepend(div);
 
     setTimeout(() => {
-        div.classList.add("fade-out");
-        setTimeout(() => div.remove(), 400);
+      div.classList.add("fade-out");
+      setTimeout(() => div.remove(), 400);
     }, 3000);
-}
-
+  }
 });

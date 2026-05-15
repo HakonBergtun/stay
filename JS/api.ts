@@ -1,6 +1,6 @@
 import type { Booking, NewBooking, Room, User } from "./types";
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "http://localhost:3000/api";
 
 function getApiKey(): string {
     return localStorage.getItem("api_key") ?? "Stay-ingAnonymous";
@@ -127,3 +127,36 @@ export async function deleteUser(id: number): Promise<void> {
         throw new Error("Kunne ikke slette bruker");
     }
 }
+
+/* USERS / PROFILE */
+
+export async function loginUser(
+    email: string,
+    password: string,
+): Promise<User> {
+    const users = await getUsers();
+
+    const user = users.find(
+        (u) => u.email === email && u.password === password,
+    );
+
+    if (!user) {
+        throw new Error("Feil e-post eller passord");
+    }
+
+    localStorage.setItem("currentUser", JSON.stringify(user));
+    localStorage.setItem("currentUserId", String(user.id));
+    localStorage.setItem("api_key", "Stay-ingAnonymous");
+
+    return user;
+}
+
+export function getCurrentUserId(): number {
+    return Number(localStorage.getItem("currentUserId")) || 1;
+}
+
+export function logoutUser(): void {
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("currentUserId");
+    localStorage.removeItem("api_key");
+}   

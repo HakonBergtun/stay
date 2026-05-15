@@ -1,3 +1,4 @@
+import { getCurrentUserId } from "./api";
 import { BASE_URL, API_KEY } from "./config";
 
 interface Room {
@@ -23,7 +24,7 @@ interface Booking {
     updated: string;
 }
 
-const CURRENT_USER_ID = 1;
+const CURRENT_USER_ID = getCurrentUserId();
 
 let rooms: Room[] = [];
 let bookings: Booking[] = [];
