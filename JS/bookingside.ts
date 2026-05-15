@@ -1,3 +1,4 @@
+// Håkon Bergtun
 import { getCurrentUserId } from "./api";
 import { BASE_URL, API_KEY } from "./config";
 

@@ -1,3 +1,4 @@
+//håkon Bergtun
 import type { Booking, NewBooking, Room, User } from "./types";
 
 const BASE_URL = "http://localhost:3000/api";
