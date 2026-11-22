@@ -458,6 +458,94 @@ body {
   transform: scale(1.03);
 }
 
+/******************* CRUD-KNAPPER *****************/
+.hotel-price {
+  gap: 8px;
+}
+
+.hotel-price > a {
+  margin-left: auto;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+  white-space: nowrap;
+}
+
+.edit-btn {
+  border: 1px solid var(--logo);
+  color: var(--logo-dark);
+}
+
+.edit-btn:hover {
+  background: var(--logo);
+  color: white;
+}
+
+.delete-btn {
+  border: 1px solid #c0392b;
+  color: #c0392b;
+}
+
+.delete-btn:hover {
+  background: #c0392b;
+  color: white;
+}
+
+.edit-btn:focus-visible,
+.delete-btn:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+/******************* SKJEMA *****************/
+.hotel-form {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 24px;
+  padding: 20px;
+  background: var(--soft-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.hotel-form label {
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.hotel-form input,
+.hotel-form textarea {
+  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font: inherit;
+}
+
+.hotel-form button[type="submit"] {
+  justify-self: start;
+  margin-top: 10px;
+  padding: 8px 18px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--logo);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.hotel-form button[type="submit"]:hover {
+  background: var(--logo-dark);
+}
+
 /******************* FOOTER *****************/
 .footer {
   margin-top: 48px;

@@ -32,7 +32,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 body: JSON.stringify({
                     userName: `${firstName} ${lastName}`,
                     email: email,
-                    password: password.value
+                    password: password.value,
+                    created: "",
+                    updated: ""
                 })
             });
 

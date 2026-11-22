@@ -135,6 +135,33 @@
       </div>
     </div>
 
+    <form class="hotel-form">
+  <h2>Legg til hotell</h2>
+
+  <label for="hotel-name">Navn</label>
+  <input id="hotel-name" required>
+
+  <label for="hotel-location">Sted</label>
+  <input id="hotel-location" required>
+
+  <label for="hotel-stars">Stjerner (1–5)</label>
+  <input id="hotel-stars" type="number" min="1" max="5" required>
+
+  <label for="hotel-price">Pris per natt</label>
+  <input id="hotel-price" type="number" min="0" required>
+
+  <label for="hotel-facilities">Fasiliteter</label>
+  <input id="hotel-facilities">
+
+  <label for="hotel-image">Bilde</label>
+  <input id="hotel-image" placeholder="./assets/index/hoteloslo.jpeg">
+
+  <label for="hotel-description">Beskrivelse</label>
+  <textarea id="hotel-description"></textarea>
+
+  <button type="submit">Lagre hotell</button>
+</form>
+
     <div class="hotel-list">
     </div>
   </section>

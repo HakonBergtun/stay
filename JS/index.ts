@@ -7,13 +7,30 @@ type Hotel = {
   price: number;
   facilities: string[];
   image: string;
+  Description?: string;
 };
 
 document.addEventListener("DOMContentLoaded", async () => {
-  const response = await fetch("http://localhost:4000/api/hotels");
-  const hotels: Hotel[] = await response.json();
+  const API_URL = "http://localhost:3000/api/hotels";
+  const API_KEY = "Stay-ingAnonymous";
+
+  let editingId: number | null = null;
+
+  let hotels: Hotel[] = [];
 
   const hotelList = document.querySelector(".hotel-list");
+
+  async function loadHotels() {
+    const response = await fetch(API_URL);
+    if (!response.ok) {
+      if (hotelList)
+        hotelList.innerHTML =
+          "<p>Kunne ikke hente hotellene. Vennligst prøv igjen senere.</p>";
+      return;
+    }
+    hotels = await response.json();
+    displayHotels(hotels);
+  }
 
   function displayHotels(filtered: Hotel[]) {
     if (!hotelList) return;
@@ -37,6 +54,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <p class="price-label">per natt</p>
               </div>
               <a href="infoside.html?id=${hotel.id}">View deal</a>
+              <button type="button" class="edit-btn" data-id="${hotel.id}">Rediger</button>
+              <button type="button" class="delete-btn" data-id="${hotel.id}">Slett</button>
             </div>
           </div>
         </article>
@@ -44,16 +63,125 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
-  displayHotels(hotels);
+  loadHotels();
 
-  const destinationInput = document.querySelector("#destination-input") as HTMLInputElement;
+  const hotelForm = document.querySelector(".hotel-form") as HTMLFormElement;
+  const formTitle = hotelForm?.querySelector("h2");
+  const submitButton = hotelForm?.querySelector("button[type='submit']");
+
+  const value = (id: string) =>
+    (document.getElementById(id) as HTMLInputElement).value;
+
+  const setValue = (id: string, newValue: string) => {
+    (document.getElementById(id) as HTMLInputElement).value = newValue;
+  };
+
+  function resetForm() {
+    hotelForm.reset();
+    editingId = null;
+    if (formTitle) formTitle.textContent = "Legg til hotell";
+    if (submitButton) submitButton.textContent = "Lagre hotell";
+  }
+
+  hotelList?.addEventListener("click", async (e) => {
+    const target = e.target as HTMLElement;
+    const id = Number(target.dataset.id);
+
+    if (target.classList.contains("delete-btn")) {
+      const response = await fetch(`${API_URL}/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${API_KEY}`,
+        },
+      });
+
+      if (response.ok) {
+        loadHotels();
+      }
+    }
+
+    if (target.classList.contains("edit-btn")) {
+      const hotel = hotels.find((h) => h.id === id);
+      if (!hotel) return;
+
+      editingId = hotel.id;
+      setValue("hotel-name", hotel.name);
+      setValue("hotel-location", hotel.location);
+      setValue("hotel-stars", String(hotel.stars));
+      setValue("hotel-price", String(hotel.price));
+      setValue("hotel-facilities", hotel.facilities.join(", "));
+      setValue("hotel-image", hotel.image);
+      setValue("hotel-description", hotel.Description ?? "");
+
+      if (formTitle) formTitle.textContent = `Rediger ${hotel.name}`;
+      if (submitButton) submitButton.textContent = "Oppdater hotell";
+      hotelForm.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+
+  hotelForm?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = {
+      name: value("hotel-name"),
+      location: value("hotel-location"),
+      stars: Number(value("hotel-stars")),
+      price: Number(value("hotel-price")),
+      facilities: value("hotel-facilities")
+        .split(",")
+        .map((f) => f.trim())
+        .filter((f) => f !== ""),
+      image: value("hotel-image"),
+      Description: value("hotel-description"),
+    };
+
+    let response: Response;
+
+    if (editingId === null) {
+      response = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${API_KEY}`,
+        },
+        body: JSON.stringify({
+          ...formData,
+          rooms: "",
+          modern: false,
+          view: "",
+          available: true,
+        }),
+      });
+    } else {
+      const existingHotel = hotels.find((h) => h.id === editingId);
+
+      response = await fetch(`${API_URL}/${editingId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${API_KEY}`,
+        },
+        body: JSON.stringify({ ...existingHotel, ...formData }),
+      });
+    }
+
+    if (response.ok) {
+      resetForm();
+      loadHotels();
+    }
+  });
+
+  const destinationInput = document.querySelector(
+    "#destination-input",
+  ) as HTMLInputElement;
 
   destinationInput?.addEventListener("input", () => {
     const query = destinationInput.value.toLowerCase();
 
-    const filteredHotels = hotels.filter((hotel) =>
-      hotel.location.toLowerCase().includes(query) ||
-      hotel.name.toLowerCase().includes(query)
+    const filteredHotels = hotels.filter(
+      (hotel) =>
+        hotel.location.toLowerCase().includes(query) ||
+        hotel.name.toLowerCase().includes(query),
     );
 
     displayHotels(filteredHotels);
@@ -61,7 +189,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const guestLabel = document.getElementById("guest-label") as HTMLElement;
   const guestInput = document.getElementById("guest-input") as HTMLInputElement;
-  const guestDropdown = document.querySelector(".guest-dropdown") as HTMLElement;
+  const guestDropdown = document.querySelector(
+    ".guest-dropdown",
+  ) as HTMLElement;
   const adultsCount = document.getElementById("adults-count") as HTMLElement;
   const childCount = document.getElementById("child-count") as HTMLElement;
 
@@ -82,8 +212,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   document.addEventListener("click", (e) => {
-    if (!guestInput.contains(e.target as Node) &&
-      !guestDropdown?.contains(e.target as Node)) {
+    if (
+      !guestInput.contains(e.target as Node) &&
+      !guestDropdown?.contains(e.target as Node)
+    ) {
       guestDropdown?.classList.remove("open");
     }
   });
@@ -119,14 +251,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const applyBtn = document.querySelector(".btn-apply");
   const clearBtn = document.querySelector(".btn-clear");
-  const checkboxes = document.querySelectorAll(".filters input[type='checkbox']") as NodeListOf<HTMLInputElement>;
+  const checkboxes = document.querySelectorAll(
+    ".filters input[type='checkbox']",
+  ) as NodeListOf<HTMLInputElement>;
 
   applyBtn?.addEventListener("click", () => {
-
     const selectedAmenities: string[] = [];
     checkboxes.forEach((checkbox) => {
       if (checkbox.checked && !checkbox.classList.contains("star-checkbox")) {
-        selectedAmenities.push(checkbox.parentElement?.textContent?.trim() ?? "");
+        selectedAmenities.push(
+          checkbox.parentElement?.textContent?.trim() ?? "",
+        );
       }
     });
 
@@ -135,16 +270,26 @@ document.addEventListener("DOMContentLoaded", async () => {
       selectedStars.push(Number((checkbox as HTMLInputElement).value));
     });
 
-    const minPrice = Number((document.getElementById("price-min") as HTMLInputElement).value) || 0;
-    const maxPrice = Number((document.getElementById("price-max") as HTMLInputElement).value) || Infinity;
+    const minPrice =
+      Number(
+        (document.getElementById("price-min") as HTMLInputElement).value,
+      ) || 0;
+    const maxPrice =
+      Number(
+        (document.getElementById("price-max") as HTMLInputElement).value,
+      ) || Infinity;
 
     const filtered = hotels.filter((hotel) => {
-      const amenityMatch = selectedAmenities.length === 0 ||
+      const amenityMatch =
+        selectedAmenities.length === 0 ||
         selectedAmenities.every((amenity) =>
-          hotel.facilities.some((a) => a.toLowerCase().includes(amenity.toLowerCase()))
+          hotel.facilities.some((a) =>
+            a.toLowerCase().includes(amenity.toLowerCase()),
+          ),
         );
 
-      const starMatch = selectedStars.length === 0 || selectedStars.includes(hotel.stars);
+      const starMatch =
+        selectedStars.length === 0 || selectedStars.includes(hotel.stars);
 
       const priceMatch = hotel.price >= minPrice && hotel.price <= maxPrice;
 
@@ -163,7 +308,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     displayHotels(hotels);
   });
 
-  const sortSelect = document.querySelector(".sort-control select") as HTMLSelectElement;
+  const sortSelect = document.querySelector(
+    ".sort-control select",
+  ) as HTMLSelectElement;
 
   sortSelect?.addEventListener("change", () => {
     const value = sortSelect.value;
@@ -180,5 +327,4 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     displayHotels(sortedHotels);
   });
-
 });
